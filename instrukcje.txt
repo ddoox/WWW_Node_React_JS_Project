@@ -1,0 +1,4 @@
+Wejdź do node => npm i
+Wejdź do stojgora => npm i
+Start przez wejście do node => npm start
+	i wejście do stojgora => npm start
