@@ -11,3 +11,27 @@ app.use(cors())
 app.get('/', (req, res) => res.json({msg: 'Hello World!'}))
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`))
+
+
+const { Pool, Client } = require('pg')
+
+const pool = new Pool({
+  user: 'postgres',
+  host: 'localhost',
+  database: 'ella_wyszukiwaczo',
+  password: '123',
+  port: 5432,
+})
+
+const client = new Client({
+    user: 'postgres',
+    host: 'localhost',
+    database: 'ella_wyszukiwaczo',
+    password: '123',
+    port: 5432,
+})
+client.connect()
+client.query('SELECT * from sale', (err, res) => {
+  console.log(err, res)
+  client.end()
+})
