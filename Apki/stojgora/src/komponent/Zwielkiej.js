@@ -10,16 +10,26 @@ export default function Zwielkiej(props) {
     const { gowno,gowno2 } = props;
     //to nizej funkcja do odczytywania jsona - tak jak pola kompnentu w klasie
     //useState ustawia wartosc domyslna. useState(wartosc domyslna)
-    const [ data, setdata] = useState([
+  //   const [ data, setdata] = useState([
+  //     {
+  //         id_sali: null,
+  //         nr_miejsca: "",
+  //         stan: 0,
+  //         cena: 0,
+  //         imie: "",
+  //         nazwisko: ""
+  //     }
+  // ])
+
+    const [wydarzenie, setWydarzenie] = useState([
       {
-          id_sali: null,
-          nr_miejsca: "",
-          stan: 0,
-          cena: 0,
-          imie: "",
-          nazwisko: ""
+        data: null,
+        nazwa: "",
+        ilosc_wolnych_miejsc: 0,
+        id_sali: 0,
+        link_do_obrazka: "",
       }
-  ])
+    ])
 
   const [loading, setLoading] = useState(true)
 
@@ -27,12 +37,12 @@ export default function Zwielkiej(props) {
     const czytaj = () => {
         console.log('test');
         //łapię jsona z url
-        fetch('http://localhost:3001/testowyurl')
+        fetch('http://localhost:3001/wydarzenia')
             .then(res => {
                 return res.json()
             })
             .then(json => {
-                setdata(json)
+                setWydarzenie(json)
                 setLoading(false)
             })
             .catch(err => console.error(err) )
@@ -46,13 +56,13 @@ export default function Zwielkiej(props) {
       <Spinner animation="border" />
     ) : (
       <div>
-        {data.map(sala => (
-        <Card style={{ width: '18rem' }}>
-          <Card.Img variant="top" src="http://www.kt.agh.edu.pl/pl/system/files/styles/medium/private/pictures/picture-149-1350469786.jpg?itok=wbEcsOVy" />
+        {wydarzenie.map(wydarzenie => (
+        <Card style={{ marginRight: '5rem', marginLeft: '5rem', marginTop: '2rem' }}>
+          <Card.Img variant="top" src={wydarzenie.link_do_obrazka}/>
           <Card.Body>
-        <Card.Title>{sala.imie}</Card.Title>
+        <Card.Title>{wydarzenie.nazwa}</Card.Title>
             <Card.Text>
-              Data wydarzenia
+              {wydarzenie.data}
             </Card.Text>
             <Button variant="primary">Zajmij miejsce</Button>
           </Card.Body>

@@ -6,6 +6,9 @@ import {
   Route,
   Link
 } from "react-router-dom";
+import Nav from 'react-bootstrap/Nav'
+import Navbar from 'react-bootstrap/Navbar'
+import Button from 'react-bootstrap/Button'
 
 //import css do bootstrapa
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -13,6 +16,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Zwielkiej from './komponent/Zwielkiej';
 import JeszczeInna from './komponent/JeszczeInna';
 import PrzekierowanieNaInna from './komponent/PrzekierowanieNaInna';
+import logo from './dodatki/logo1.jpg'
 
 
 function App() {
@@ -21,20 +25,17 @@ function App() {
 
 
     <Router>
-    <div>
-      <nav>
-        <ul>
-          <li>
-            <Link to="/">Home</Link>
-          </li>
-          <li>
-            <Link to="/JeszczeInnalink">About</Link>
-          </li>
-          <li>
-            <Link to="/Drugilink">Users</Link>
-          </li>
-        </ul>
-      </nav>
+    <body background="https://uwalls.pl/gallery/119/25979_thumb_b1000.jpg">
+      <Navbar bg="dark" variant="dark">
+        <Navbar.Brand href="/"> <img src={logo}/> </Navbar.Brand>
+        <Nav className="mr-auto">
+          <Nav.Link href="/">Home</Nav.Link>
+          <Nav.Link href="/JeszczeInnalink">JeszczeInna</Nav.Link>
+          <Nav.Link href="/Drugilink">Drugilink</Nav.Link>
+        </Nav>
+        <Button variant="outline-info">Dodaj wydarzenie</Button>
+      </Navbar>
+      
 
     {/*w ten sposob wyswietlane na kazdej stronie*/}
 
@@ -58,38 +59,12 @@ function App() {
           <PrzekierowanieNaInna />
         </Route>
       </Switch>
-    </div>
+    
+    </body>
   </Router>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- 
-    
-  );
+    );
 }
 
 export default App;
