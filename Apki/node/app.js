@@ -5,7 +5,11 @@ const bodyParser = require('body-parser')
 const port = 3001
 //cors - do nagłówka http - jest i działa. Jak nie ma to nie działa
 const cors = require('cors')
-const nazwaMojejZmiennej = require('./zapytania/SelectWszystkoSala')
+const WszystkieWydarzenia = require('./zapytania/SelectAllWydarzenia')
+const WszystkieSale = require('./zapytania/SelectAllSala')
+const InsertWydarzenie = require('./zapytania/InsertWydarzenie')
+const UsunWydarzenie = require('./zapytania/DeleteWydarzenie')
+
 
 app.use(cors())
 //dekodowanie - musi byc bo nie dziala json
@@ -19,42 +23,9 @@ app.use(
 //Jak chcę pobrać z innego miejsca to '/innemiejsce' - url
 app.get('/', (req, res) => res.json({msg: 'Hello World!'}))
 
-app.use('/testowyurl', nazwaMojejZmiennej)
+app.use('/select/wszystkiewydarzenia', WszystkieWydarzenia)
+app.use('/select/sale', WszystkieSale)
+app.use('/insert/wydarzenie', InsertWydarzenie)
+app.use('/delete/wydarzenie', UsunWydarzenie)
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`))
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// const { Pool, Client } = require('pg')
-
-// const pool = new Pool({
-//   user: 'postgres',
-//   host: 'localhost',
-//   database: 'ella_wyszukiwaczo',
-//   password: '123',
-//   port: 5432,
-// })
-
-// const client = new Client({
-//     user: 'postgres',
-//     host: 'localhost',
-//     database: 'ella_wyszukiwaczo',
-//     password: '123',
-//     port: 5432,
-// })
-// client.connect()
-// client.query('SELECT * from sale', (err, res) => {
-//   console.log(err, res)
-//   client.end()
-// })

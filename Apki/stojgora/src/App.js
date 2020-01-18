@@ -13,57 +13,46 @@ import Button from 'react-bootstrap/Button'
 //import css do bootstrapa
 import 'bootstrap/dist/css/bootstrap.min.css';
 //Każdy komponent importuje
-import Zwielkiej from './komponent/Zwielkiej';
-import JeszczeInna from './komponent/JeszczeInna';
-import PrzekierowanieNaInna from './komponent/PrzekierowanieNaInna';
+import StronaGlowna from './komponent/StronaGlowna';
+import DodajWydarzenie from './komponent/DodajWydarzenie';
+import UsunWydarzenie from './komponent/UsunWydarzenie';
 import logo from './dodatki/logo1.jpg'
 
 
 function App() {
-  return (
+    return (
 
 
 
-    <Router>
-    <body background="https://uwalls.pl/gallery/119/25979_thumb_b1000.jpg">
-      <Navbar bg="dark" variant="dark">
-        <Navbar.Brand href="/"> <img src={logo}/> </Navbar.Brand>
-        <Nav className="mr-auto">
-          <Nav.Link href="/">Home</Nav.Link>
-          <Nav.Link href="/JeszczeInnalink">JeszczeInna</Nav.Link>
-          <Nav.Link href="/Drugilink">Drugilink</Nav.Link>
-        </Nav>
-        <Button variant="outline-info">Dodaj wydarzenie</Button>
-      </Navbar>
-      
+        <Router>
+            <Navbar bg="dark" variant="dark">
+                <Navbar.Brand href="/"> <img src={logo}/> </Navbar.Brand>
+                <Nav className="mr-auto">
+                    <Nav.Link href="/">Strona Główna</Nav.Link>
+                    <Nav.Link href="/UsunWydarzenie">Usuń wydarzernie</Nav.Link>
+                </Nav>
+                <Button variant="outline-info" href="/DodajWydarzenie">Dodaj wydarzenie</Button>
+            </Navbar>
+        
 
-    {/*w ten sposob wyswietlane na kazdej stronie*/}
+        {/*w ten sposob wyswietlane na kazdej stronie*/}
+        {/* A <Switch> looks through its children <Route>s and
+            renders the first one that matches the current URL. */}
+        {/*Na stronie jest to co wyzej, switch zmienia strone(jako komponenty)  */}
 
-
-
-      {/* A <Switch> looks through its children <Route>s and
-          renders the first one that matches the current URL. */}
-
-
-      {/*Na stronie jest to co wyzej, switch zmienia strone(jako komponenty)  */}
-
-      <Switch>
-        <Route exact path="/">
-		{/* Tak się używa komponentów */}
-		      <Zwielkiej gowno="gowno" gowno2 = "  gowno ok2"/>
-        </Route>
-        <Route exact path="/JeszczeInnalink">
-          <JeszczeInna />
-        </Route>
-        <Route exact path="/Drugilink">
-          <PrzekierowanieNaInna />
-        </Route>
-      </Switch>
-    
-    </body>
-  </Router>
-
-
+            <Switch>
+                <Route exact path="/">
+                    {/* Tak się używa komponentów */}
+                    <StronaGlowna gowno="gowno" gowno2 = "  gowno ok2"/>
+                </Route>
+                <Route exact path="/DodajWydarzenie">
+                    <DodajWydarzenie />
+                </Route>
+                    <Route exact path="/UsunWydarzenie">
+                        <UsunWydarzenie />
+                </Route>
+            </Switch>
+        </Router>
     );
 }
 
