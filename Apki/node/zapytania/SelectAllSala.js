@@ -1,15 +1,6 @@
 const router = require('express').Router()
+const client = require('./Polaczenie')
 
-
-const {Pool} = require('pg')
-
-const client = new Pool({
-    user: 'postgres',
-    host: 'localhost',
-    database: 'ella_wyszukiwaczo',
-    password: '123',
-    port: 5432,
-  })
 
 
 //kurła tylko nie usuń bo chyba Cię zabiję :* - tak się robi posta z body i parametrami z urla i parametrami w selectcie - ultra przydatne
@@ -31,18 +22,17 @@ const client = new Pool({
 // })
 
 router.get('/', (req, res) => {
-  client.query('SELECT * FROM sale')
-      .then(result => {
-          res.status(201).json(
-              result.rows
-          )
-      })
-      .catch(err => {
-          console.error(err)
-          res.status(500).json({err})
-      })
+    client.query('SELECT * FROM sala')
+        .then(result => {
+            res.status(201).json(
+                result.rows
+            )
+        })
+    .catch(err => {
+        console.error(err)
+        res.status(500).json({err})
+    })
 })
-
 
   module.exports = router
 

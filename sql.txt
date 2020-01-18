@@ -1,0 +1,30 @@
+CREATE TABLE sala (
+  id_sala serial NOT NULL PRIMARY KEY,
+  liczba_miejsc integer NOT NULL
+);
+
+
+CREATE TABLE wydarzenie (
+  id_wydarzenie serial NOT NULL PRIMARY KEY,
+  id_sala int NOT NULL,
+  data character varying(10) NOT NULL,
+  nazwa character varying(100) NOT NULL,
+  link_obrazek character varying(500),
+  FOREIGN KEY (id_sala) REFERENCES sala(id_sala)
+);
+
+CREATE TABLE rezerwacja (
+  id_rezerwacja serial NOT NULL PRIMARY KEY,
+  id_wydarzenie int NOT NULL,
+  stan smallint NOT NULL DEFAULT 0,
+  numer_miejsca int NOT NULL,
+  FOREIGN KEY (id_wydarzenie) REFERENCES wydarzenie(id_wydarzenie)
+);
+
+INSERT INTO sala(liczba_miejsc)	VALUES (20);
+INSERT INTO sala(liczba_miejsc)	VALUES (40);
+INSERT INTO sala(liczba_miejsc)	VALUES (60);
+INSERT INTO sala(liczba_miejsc)	VALUES (80);
+
+INSERT INTO wydarzenie(id_sala, data, nazwa, link_obrazek) VALUES (1, '10-12-2020', 'Wydarzenie pierwsze', 'https://image.ceneostatic.pl/data/products/50624514/i-kupa-szczescia-oczysc-jelita-zyskaj-zdrowie-i-dobre-samopoczucie-adrian-schulte-ksiazka.jpg');
+INSERT INTO wydarzenie(id_sala, data, nazwa, link_obrazek) VALUES (2, '13-12-2020', 'Wydarzenie drugie', 'https://lh6.googleusercontent.com/4MoYGghg1yFWR-1ssy3iEsbmXpUjV0VPAWUXA7Ro7jM6guCt6x_GwIVDv9a3jtojV4x6ClIgT00jDMe2sBz3ftTkWsRE4dH6pzsxTveqD8WNXqN9KR4GROtcUl1FibIdY_SHtUYE');
