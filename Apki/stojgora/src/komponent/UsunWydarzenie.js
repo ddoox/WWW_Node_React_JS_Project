@@ -89,7 +89,7 @@ export default function UsunWydarzenie(props) {
                     <Card.Text>
                         <Form.Group controlId="formDeleteId">
                         <Form.Label>Wybierz wydarzenie do usunięcia </Form.Label>
-                            <Form.Control as="select" name = "id_wydarzenie" defaultValue = "" onChange={onchange}>
+                            <Form.Control as="select" name = "id_wydarzenie" defaultValue = "" onChange={onchange} required>
                                 <option value="" selected disabled>Wydarzenie do usunięcia</option>
                                 {wydarzenie.map(wydarzenie => (
                                 <option value = {wydarzenie.id_wydarzenie}>Id = "{wydarzenie.id_wydarzenie}" Nazwa = "{wydarzenie.nazwa}"</option>
@@ -98,7 +98,7 @@ export default function UsunWydarzenie(props) {
                         </Form.Group>
                     </Card.Text>
      
-                    <Button variant="primary" type="submit" onClick = {onclick}>Usuń</Button>
+                    <Button variant="primary" type="submit" onSubmit = {onclick}>Usuń</Button>
                 </Card.Body>
             </Card>
         </Form>

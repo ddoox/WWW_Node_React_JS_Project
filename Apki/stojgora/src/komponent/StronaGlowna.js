@@ -5,20 +5,14 @@ import Card from 'react-bootstrap/Card';
 import Spinner from 'react-bootstrap/Spinner';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-
-
-
-
+import Sala from './Sala';
 
 import {
     BrowserRouter as Router,
     Switch,
     Route,
-    Link,
+    Link
   } from "react-router-dom";
-  import DodajWydarzenie from './DodajWydarzenie';
-
-
 
 
 
@@ -74,15 +68,18 @@ export default function StronaGlowna(props) {
         czytaj()
     },[])
 
-    function onclick(props){
-        const {iddoprzkazania} = props;
+    function onclick(){
+        // const {iddoprzkazania} = props;
 
         // <Switch>
         // <Route exact path="/DodajWydarzenie">
         //     <DodajWydarzenie />
         // </Route>
         // </Switch>
-        console.log(props)
+        // return(<Redirect to ="/Sala">
+        //             <Sala />
+        //         </Redirect>)
+        // console.log(iddoprzkazania)
 
     }
     const datadisplay = loading ? (
@@ -97,16 +94,30 @@ export default function StronaGlowna(props) {
                             <Card.Body>
                                 <Row>
                                     <Col xs={6} sm={7} md={8}>
-                                        <Card.Title> {wydarzenie.nazwa}</Card.Title>
+                                        <Card.Title>{wydarzenie.id_wydarzenie}: {wydarzenie.nazwa}</Card.Title>
                                         <Card.Text>{wydarzenie.data}</Card.Text>
                                     </Col>
                                     <Col>
+                                    
+                                    
+                                    {/* <Button variant="primary" >
+
+                                        <Route path="/Sala/:id" component={Sala}/>
+                                    
+                                    </Button> */}
 
 
-                                        <Button variant="primary" iddoprzkazania = {wydarzenie.id_wydarzenie}>
+
+                                        <Button variant="primary">
+                                        {/* <Button color = "white" variant="primary" > */}
                                             
+                                            <Link to={ "/Sala/" + wydarzenie.id_wydarzenie} className="btn btn-primary">
+                                            {/* {/* <Link to={"/Sala/" + wydarzenie.id_wydarzenie} atrybut = "ok" className="btn btn-primary" > */}
+                                    Rozkminiam przekierowania 
 
-                                            Rozkminiam przekierowania
+                                            </Link> 
+                                            {/* Rozkminiam przekierowania */}
+                                            {/* <Sala /> */}
 
 
 

@@ -17,6 +17,8 @@ import StronaGlowna from './komponent/StronaGlowna';
 import DodajWydarzenie from './komponent/DodajWydarzenie';
 import UsunWydarzenie from './komponent/UsunWydarzenie';
 import ZmodyfikujWydarzenie from './komponent/ZmodyfikujWydarzenie';
+import Sala from './komponent/Sala';
+
 import logo from './dodatki/logo1.jpg'
 
 
@@ -30,6 +32,8 @@ function App() {
                 <Navbar.Brand href="/"> <img src={logo}/> </Navbar.Brand>
                 <Nav className="mr-auto">
                     <Nav.Link href="/">Strona Główna</Nav.Link>
+                    <Nav.Link href="/Sala">Sala test</Nav.Link>
+
                 </Nav>
                 <Button variant="outline-info" href="/DodajWydarzenie">Zarządzaj wydarzeniami</Button>
             </Navbar>
@@ -44,6 +48,9 @@ function App() {
                 <Route exact path="/">
                     {/* Tak się używa komponentów */}
                     <StronaGlowna gowno="gowno" gowno2 = "  gowno ok2"/>
+                </Route>
+                <Route  path="/Sala/:id">
+                    <Sala />
                 </Route>
                 <Route exact path="/DodajWydarzenie">
                     <DodajWydarzenie />

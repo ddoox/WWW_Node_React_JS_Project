@@ -146,7 +146,7 @@ export default function DodajWydarzenie(props) {
                     <Card.Text>
                         <Form.Group controlId="formDeleteId">
                             <Form.Label>Wybierz wydarzenie do Zmodyfikowania </Form.Label>
-                            <Form.Control as="select" name = "id_wydarzenie" defaultValue = "" onChange={onchangeSelect}>
+                            <Form.Control as="select" name = "id_wydarzenie" defaultValue = "" onChange={onchangeSelect} required>
                                 <option value="" selected disabled>Wydarzenie do modyfikacji</option>
                                 {wydarzenie.map(wydarzenie => (
                                 <option value = {wydarzenie.id_wydarzenie}>Id = "{wydarzenie.id_wydarzenie}" Nazwa = "{wydarzenie.nazwa}"</option>
@@ -188,7 +188,7 @@ export default function DodajWydarzenie(props) {
 
                         <Form.Group controlId="formIloscMiejsc">
                             <Form.Label>Ilość miejsc</Form.Label>
-                            <Form.Control as="select" name = "id_sala" defaultValue = "" onChange={onchange}>
+                            <Form.Control as="select" name = "id_sala" defaultValue = "" onChange={onchange} required>
                                 <option value="" selected disabled>Wybierz ilość miejsc</option>
                                 {sala.map(sala => (
                                     <option value = {sala.id_sala}>{sala.liczba_miejsc}</option>
@@ -207,7 +207,7 @@ export default function DodajWydarzenie(props) {
                         </Form.Group>
                     </Card.Text>
 
-                        <Button variant="primary" type="submit" onClick = {onclick}>Modyfikuj</Button>
+                        <Button variant="primary" type="submit" onSubmit = {onclick}>Modyfikuj</Button>
                         <Button variant="secondary" type="reset">Reset</Button>
                         
                 </Card.Body>
