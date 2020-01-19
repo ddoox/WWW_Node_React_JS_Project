@@ -55,17 +55,25 @@ export default function DodajWydarzenie(props) {
     const onclick = (event) => {
         event.preventDefault()
 
-        const test = formData.link_obrazek.replace(/\./g,"TuBylaKropkaNieMaToJakSwietnyKod").replace(/\:/g,"ToSieNazywaDlugiUrl").replace(/\//g,"CzasNaSlashe")
-            .replace(/\_/g,"JeszczePodkresleniaDzialaAle").replace(/\,/g,"JakbyCosToNiePisalemTegoFragmentu")
-        // console.log(test)
+        if(formData.nazwa != null && formData.link_obrazek != null && formData.id_sala != null && formData.data != null){
 
-        const append = formData.nazwa + "/" + formData.id_sala + "/" + formData.data + "/" + test
-        const url = "http://localhost:3001/insert/wydarzenie/" + append
-        console.log(url)
+            const test = formData.link_obrazek.replace(/\./g,"TuBylaKropkaNieMaToJakSwietnyKod").replace(/\:/g,"ToSieNazywaDlugiUrl").replace(/\//g,"CzasNaSlashe")
+                .replace(/\_/g,"JeszczePodkresleniaDzialaAle").replace(/\,/g,"JakbyCosToNiePisalemTegoFragmentu")
+            // console.log(test)
 
-        fetch(url, {
-            method: 'post'
-        });
+            const append = formData.nazwa + "/" + formData.id_sala + "/" + formData.data + "/" + test
+            const url = "http://localhost:3001/insert/wydarzenie/" + append
+            console.log(url)
+
+            fetch(url, {
+                method: 'post'
+            });
+
+            alert("Dodano wydarzenie " + formData.nazwa);
+            window.location.reload();
+        }else{
+            alert("Uzupelnij wszystkie pola!!")
+        }
 
 //TODO: Reset wartosci, alert
 
@@ -122,7 +130,7 @@ export default function DodajWydarzenie(props) {
                         </Form.Group>
                     </Card.Text>
 
-                    <Button variant="primary" type="submit" onSubmit = {onclick}>Dodaj</Button>
+                    <Button variant="primary" type="submit" onClick = {onclick}>Dodaj</Button>
 
                     <Button variant="secondary" type="reset">Reset</Button>
                 </Card.Body>
