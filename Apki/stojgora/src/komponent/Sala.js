@@ -1,5 +1,17 @@
 // Na razie tylko placeholder
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
+import Button from 'react-bootstrap/Button';
+import scena from '../dodatki/scena.jpg';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import Spinner from 'react-bootstrap/Spinner';
+
+import {
+    BrowserRouter as Router,
+    Switch,
+    Route,
+    Link
+  } from "react-router-dom";
 
 export default function Sala(props) {
     const { atrybut } = props;
@@ -16,15 +28,65 @@ export default function Sala(props) {
     //   console.log("id wydarzenia "+this.state) // "bar"
     // console.log(this.props)
     // const okokok = this.props.id
-    const ddd = window.location.href.substring(27); 
-    console.log(ddd); 
+    const id_wydarzenia = window.location.href.substring(27,28); 
+    console.log(id_wydarzenia); 
     // console.log(atrybut)
+    const id_sali_z_linka = window.location.href.substring(28);
+
+    const [sala, setSala] = useState([
+        {
+            id_sala: null,
+            liczba_miejsc: null,
+        }
+    ])
+
+    const czytajSale = () => {
+        console.log('test');
+        //łapię jsona z url
+        fetch('http://localhost:3001/select/sale')
+            .then(res => {
+                return res.json()
+            })
+            .then(json => {
+                setSala(json)
+                
+            })
+            .catch(err => console.error(err) )
+    }
+
+    // function krzesla(){
+    // 	for(var i=0; i<3;i++){
+    // 		<Row style={{width: '40rem', marginLeft: 'auto', marginRight: 'auto'}}>>
+    // 		for(var j=0; j<10 ;j++){
+    // 			<Col>
+    // 				<Button variant="primary"></Button>
+    // 			</Col>
+    // 		}
+    // 		</Row>
+    // 	}
+    // }
+
+    const saladisplay =  
+    (
+	    <div>
+	    	<Row style={{width: '35rem', marginLeft: 'auto', marginRight: 'auto'}}>
+		    	<Col >
+		    		<img src={scena} />
+		    	</Col>
+	    	</Row>
+	    	<Row>
+	    		<Col>
+	    		id wydarzenia: {id_wydarzenia}
+	    		id_sali: {id_sali_z_linka}
+	    		</Col>
+	    	</Row>
+	    </div>
+    )
+
 
     return (
-
-        <div>
-            <h2> {ddd} </h2>
-        </div>
-
+    	<div>
+    		{saladisplay}
+    	</div>
     )
 }
