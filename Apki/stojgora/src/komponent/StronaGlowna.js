@@ -90,13 +90,13 @@ export default function StronaGlowna(props) {
     ) : (
         <div>
             {wydarzenie.map(wydarzenie => (
-                <Row className="justify-content-md-center">
+                <Row className="justify-content-md-center p-2">
                     <Col xs={12} md={10} lg={8}>
                         <Card >
                         <Card.Img variant="top" src={wydarzenie.link_obrazek}/>
                             <Card.Body>
                                 <Row>
-                                    <Col>
+                                    <Col xs={6} sm={7} md={8}>
                                         <Card.Title> {wydarzenie.nazwa}</Card.Title>
                                         <Card.Text>{wydarzenie.data}</Card.Text>
                                     </Col>
