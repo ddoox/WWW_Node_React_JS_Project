@@ -4,6 +4,7 @@ import Button from "react-bootstrap/Button"
 import Spinner from 'react-bootstrap/Spinner';
 import Alert from 'react-bootstrap/Alert';
 import Card from 'react-bootstrap/Card';
+import Nav from 'react-bootstrap/Nav';
 
 
 export default function DodajWydarzenie(props) {
@@ -64,9 +65,12 @@ export default function DodajWydarzenie(props) {
 
         fetch(url, {
             method: 'post'
-        })
+        });
 
-//TODO: Reset wartosci, alert? 
+        
+
+//TODO: Reset wartosci, alert
+
     }
 
 
@@ -77,8 +81,18 @@ export default function DodajWydarzenie(props) {
 //TODO: Trzeba dodać walidacje, na razie nie wiem jak
         <Form id = "input-form">
             <Card bg ="light" border="primary" style={{width: '35rem', marginLeft: 'auto', marginRight: 'auto'}} >
+                <Card.Header>
+                    <Nav variant="tabs" defaultActiveKey="#first">
+                      <Nav.Item>
+                        <Nav.Link href="#first">Dodaj wydarzenie</Nav.Link>
+                      </Nav.Item>
+                      <Nav.Item>
+                        <Nav.Link href="/UsunWydarzenie">Usuń wydarzenie</Nav.Link>
+                      </Nav.Item>
+                    </Nav>
+                </Card.Header>
                 <Card.Body>
-                <Card.Title>Dodaj wydarzenie</Card.Title>
+                    <Card.Title>Dodaj wydarzenie</Card.Title>
                     <Card.Text>
 
                         <Form.Group controlId="formNazwaWydarzenia">

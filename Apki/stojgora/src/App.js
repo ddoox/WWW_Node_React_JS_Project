@@ -25,13 +25,12 @@ function App() {
 
 
         <Router>
-            <Navbar bg="dark" variant="dark">
+            <Navbar bg="dark" variant="dark" style={{marginBottom: '3rem'}}>
                 <Navbar.Brand href="/"> <img src={logo}/> </Navbar.Brand>
                 <Nav className="mr-auto">
                     <Nav.Link href="/">Strona Główna</Nav.Link>
-                    <Nav.Link href="/UsunWydarzenie">Usuń wydarzernie</Nav.Link>
                 </Nav>
-                <Button variant="outline-info" href="/DodajWydarzenie">Dodaj wydarzenie</Button>
+                <Button variant="outline-info" href="/DodajWydarzenie">Zarządzaj wydarzeniami</Button>
             </Navbar>
         
 

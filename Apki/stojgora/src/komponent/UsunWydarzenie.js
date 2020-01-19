@@ -3,6 +3,8 @@ import Form from "react-bootstrap/Form"
 import Button from "react-bootstrap/Button"
 import Spinner from 'react-bootstrap/Spinner';
 import Alert from 'react-bootstrap/Alert';
+import Card from 'react-bootstrap/Card';
+import Nav from 'react-bootstrap/Nav';
 
 export default function UsunWydarzenie(props) {
 
@@ -68,17 +70,34 @@ export default function UsunWydarzenie(props) {
     ) : (
 
         <Form id = "delete-form">
-            <Form.Group controlId="formDeleteId">
-                <Form.Label>Wybierz wydarzenie do usunięcia </Form.Label>
-                <Form.Control as="select" name = "id_wydarzenie" defaultValue = "" onChange={onchange}>
-                    <option value="" selected disabled>Wydarzenie do usunięcia</option>
-                    {wydarzenie.map(wydarzenie => (
-                    <option value = {wydarzenie.id_wydarzenie}>Id = "{wydarzenie.id_wydarzenie}" Nazwa = "{wydarzenie.nazwa}"</option>
-                    ))}
-                </Form.Control>
-            </Form.Group>
+            <Card bg ="light" border="primary" style={{width: '35rem', marginLeft: 'auto', marginRight: 'auto'}} >
+                <Card.Header>
+                    <Nav variant="tabs" defaultActiveKey="#second">
+                      <Nav.Item>
+                       <Nav.Link href="/DodajWydarzenie">Dodaj wydarzenie</Nav.Link>
+                      </Nav.Item>
+                      <Nav.Item>
+                        <Nav.Link href="#second">Usuń wydarzenie</Nav.Link>
+                      </Nav.Item>
+                    </Nav>
+                </Card.Header>
+                <Card.Body>
+                <Card.Title>Usuń wydarzenie</Card.Title>
+                    <Card.Text>
+                        <Form.Group controlId="formDeleteId">
+                        <Form.Label>Wybierz wydarzenie do usunięcia </Form.Label>
+                            <Form.Control as="select" name = "id_wydarzenie" defaultValue = "" onChange={onchange}>
+                                <option value="" selected disabled>Wydarzenie do usunięcia</option>
+                                {wydarzenie.map(wydarzenie => (
+                                <option value = {wydarzenie.id_wydarzenie}>Id = "{wydarzenie.id_wydarzenie}" Nazwa = "{wydarzenie.nazwa}"</option>
+                                ))}
+                            </Form.Control>
+                        </Form.Group>
+                    </Card.Text>
      
-            <Button variant="primary" type="submit" onClick = {onclick}>Usuń</Button>
+                    <Button variant="primary" type="submit" onClick = {onclick}>Usuń</Button>
+                </Card.Body>
+            </Card>
         </Form>
     )
 
