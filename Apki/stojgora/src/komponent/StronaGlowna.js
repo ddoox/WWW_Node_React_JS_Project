@@ -3,6 +3,9 @@ import React, {useState,useEffect} from 'react'
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import Spinner from 'react-bootstrap/Spinner';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+
 
 
 
@@ -11,7 +14,7 @@ import {
     BrowserRouter as Router,
     Switch,
     Route,
-    Link
+    Link,
   } from "react-router-dom";
   import DodajWydarzenie from './DodajWydarzenie';
 
@@ -87,26 +90,33 @@ export default function StronaGlowna(props) {
     ) : (
         <div>
             {wydarzenie.map(wydarzenie => (
-                <Card style={{ marginRight: '5rem', marginLeft: '5rem', marginTop: '2rem' }}>
-                <Card.Img variant="top" src={wydarzenie.link_obrazek}/>
-                    <Card.Body>
-                        <Card.Title>{wydarzenie.id_wydarzenie}: {wydarzenie.nazwa}</Card.Title>
-                        <Card.Text>{wydarzenie.data}</Card.Text>
+                <Row className="justify-content-md-center">
+                    <Col xs={12} md={10} lg={8}>
+                        <Card >
+                        <Card.Img variant="top" src={wydarzenie.link_obrazek}/>
+                            <Card.Body>
+                                <Row>
+                                    <Col>
+                                        <Card.Title> {wydarzenie.nazwa}</Card.Title>
+                                        <Card.Text>{wydarzenie.data}</Card.Text>
+                                    </Col>
+                                    <Col>
 
 
-                        <Button variant="primary" iddoprzkazania = {wydarzenie.id_wydarzenie}>
-                            
+                                        <Button variant="primary" iddoprzkazania = {wydarzenie.id_wydarzenie}>
+                                            
 
-                            Rozkminiam przekierowania
-
-
-
-                        </Button>
+                                            Rozkminiam przekierowania
 
 
 
-                    </Card.Body>
-                </Card>
+                                        </Button>
+                                    </Col>
+                                </Row>
+                            </Card.Body>
+                        </Card>
+                    </Col>
+                </Row>
             ))}
         </div>
     )
