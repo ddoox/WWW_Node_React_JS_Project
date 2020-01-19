@@ -179,7 +179,7 @@ export default function DodajWydarzenie(props) {
                     </Nav>
                 </Card.Header>
                 <Card.Body>
-                    <Card.Title>Podaj nowe parametry</Card.Title>
+                    <Card.Title>Wprowadz nowe parametry</Card.Title>
                     <Card.Text>
                         <Form.Group controlId="formNazwaWydarzenia">
                             <Form.Label>Nazwa Wydarzenia</Form.Label>
