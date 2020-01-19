@@ -92,7 +92,13 @@ export default function DodajWydarzenie(props) {
 
     const onclickSelect = (event) => {
         event.preventDefault()
-        setEdit(false)
+
+        selectData.id_wydarzenie == null ? (
+            setEdit(true)
+        ) : (
+            setEdit(false)
+
+        )
 
     console.log(selectData.id_wydarzenie)
         // formDisplay()
