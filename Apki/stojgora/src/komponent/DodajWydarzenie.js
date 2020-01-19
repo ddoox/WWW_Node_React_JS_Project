@@ -67,8 +67,6 @@ export default function DodajWydarzenie(props) {
             method: 'post'
         });
 
-        
-
 //TODO: Reset wartosci, alert
 
     }
@@ -88,6 +86,9 @@ export default function DodajWydarzenie(props) {
                       </Nav.Item>
                       <Nav.Item>
                         <Nav.Link href="/UsunWydarzenie">Usuń wydarzenie</Nav.Link>
+                      </Nav.Item>
+                      <Nav.Item>
+                        <Nav.Link href="/ZmodyfikujWydarzenie">Zmodyfikuj wydarzenie</Nav.Link>
                       </Nav.Item>
                     </Nav>
                 </Card.Header>

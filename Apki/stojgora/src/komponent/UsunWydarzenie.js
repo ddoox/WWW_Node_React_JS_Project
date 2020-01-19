@@ -79,6 +79,9 @@ export default function UsunWydarzenie(props) {
                       <Nav.Item>
                         <Nav.Link href="#second">Usuń wydarzenie</Nav.Link>
                       </Nav.Item>
+                      <Nav.Item>
+                        <Nav.Link href="/ZmodyfikujWydarzenie">Zmodyfikuj wydarzenie</Nav.Link>
+                      </Nav.Item>
                     </Nav>
                 </Card.Header>
                 <Card.Body>

@@ -9,6 +9,8 @@ const WszystkieWydarzenia = require('./zapytania/SelectAllWydarzenia')
 const WszystkieSale = require('./zapytania/SelectAllSala')
 const InsertWydarzenie = require('./zapytania/InsertWydarzenie')
 const UsunWydarzenie = require('./zapytania/DeleteWydarzenie')
+const SelectWydarzenie = require('./zapytania/SelectWydarzenie')
+const UpdateWydarzenie = require('./zapytania/UpdateWydarzenie')
 
 
 app.use(cors())
@@ -27,5 +29,7 @@ app.use('/select/wszystkiewydarzenia', WszystkieWydarzenia)
 app.use('/select/sale', WszystkieSale)
 app.use('/insert/wydarzenie', InsertWydarzenie)
 app.use('/delete/wydarzenie', UsunWydarzenie)
+app.use('/select/wydarzenie', SelectWydarzenie)
+app.use('/update/wydarzenie', UpdateWydarzenie)
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`))
