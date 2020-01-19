@@ -16,6 +16,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import StronaGlowna from './komponent/StronaGlowna';
 import DodajWydarzenie from './komponent/DodajWydarzenie';
 import UsunWydarzenie from './komponent/UsunWydarzenie';
+import ZmodyfikujWydarzenie from './komponent/ZmodyfikujWydarzenie';
 import logo from './dodatki/logo1.jpg'
 
 
@@ -49,6 +50,9 @@ function App() {
                 </Route>
                     <Route exact path="/UsunWydarzenie">
                         <UsunWydarzenie />
+                </Route>
+                <Route exact path="/ZmodyfikujWydarzenie">
+                        <ZmodyfikujWydarzenie />
                 </Route>
             </Switch>
         </Router>
