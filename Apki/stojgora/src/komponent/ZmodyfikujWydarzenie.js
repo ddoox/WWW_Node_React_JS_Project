@@ -92,12 +92,11 @@ export default function DodajWydarzenie(props) {
 
     const onclickSelect = (event) => {
         event.preventDefault()
-
         selectData.id_wydarzenie == null ? (
             setEdit(true)
         ) : (
             setEdit(false)
-
+            
         )
 
     console.log(selectData.id_wydarzenie)
@@ -114,18 +113,22 @@ export default function DodajWydarzenie(props) {
 
     const onclick = (event) => {
         event.preventDefault()
+        if(formData.nazwa != null && formData.link_obrazek != null && formData.id_sala != null && formData.data != null){
+            const test = formData.link_obrazek.replace(/\./g,"TuBylaKropkaNieMaToJakSwietnyKod").replace(/\:/g,"ToSieNazywaDlugiUrl").replace(/\//g,"CzasNaSlashe")
+                .replace(/\_/g,"JeszczePodkresleniaDzialaAle").replace(/\,/g,"JakbyCosToNiePisalemTegoFragmentu")
+            // console.log(test)
 
-        const test = formData.link_obrazek.replace(/\./g,"TuBylaKropkaNieMaToJakSwietnyKod").replace(/\:/g,"ToSieNazywaDlugiUrl").replace(/\//g,"CzasNaSlashe")
-            .replace(/\_/g,"JeszczePodkresleniaDzialaAle").replace(/\,/g,"JakbyCosToNiePisalemTegoFragmentu")
-        // console.log(test)
+            const append = selectData.id_wydarzenie + "/" + formData.nazwa + "/" + formData.id_sala + "/" + formData.data + "/" + test
+            const url = "http://localhost:3001/update/wydarzenie/" + append
+            console.log(url)
 
-        const append = selectData.id_wydarzenie + "/" + formData.nazwa + "/" + formData.id_sala + "/" + formData.data + "/" + test
-        const url = "http://localhost:3001/update/wydarzenie/" + append
-        console.log(url)
-
-        fetch(url, {
-            method: 'post'
-        })
+            fetch(url, {
+                method: 'post'
+            })
+            alert("Zmodyfikowano wydarzenie")
+        }else{
+            alert("Uzupelnij wszystkie pola")
+        }
 
     }
     
@@ -213,7 +216,7 @@ export default function DodajWydarzenie(props) {
                         </Form.Group>
                     </Card.Text>
 
-                        <Button variant="primary" type="submit" onSubmit = {onclick}>Modyfikuj</Button>
+                        <Button variant="primary" type="submit" onClick = {onclick}>Modyfikuj</Button>
                         <Button variant="secondary" type="reset">Reset</Button>
                         
                 </Card.Body>

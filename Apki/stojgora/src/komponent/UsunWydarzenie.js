@@ -45,15 +45,21 @@ export default function UsunWydarzenie(props) {
 
     const onclick = (event) => {
         event.preventDefault()
+        if(formData.id_wydarzenie != null){
+            const append = formData.id_wydarzenie
+            const url = "http://localhost:3001/delete/wydarzenie/" + append
+       
+            fetch(url, {
+                method: 'post'
+            })
 
-        const append = formData.id_wydarzenie
-        const url = "http://localhost:3001/delete/wydarzenie/" + append
-   
-        fetch(url, {
-            method: 'post'
-        })
+            czytaj()
+            alert("Usunięto wydarzenie");
+            window.location.reload();
+        }else{
+            alert ("Uzupełnij pole");
+        }
 
-        czytaj()
     }
 
     const onchange = (event) => {
@@ -98,7 +104,7 @@ export default function UsunWydarzenie(props) {
                         </Form.Group>
                     </Card.Text>
      
-                    <Button variant="primary" type="submit" onSubmit = {onclick}>Usuń</Button>
+                    <Button variant="primary" type="submit" onClick = {onclick}>Usuń</Button>
                 </Card.Body>
             </Card>
         </Form>
