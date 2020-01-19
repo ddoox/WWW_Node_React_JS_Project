@@ -3,6 +3,8 @@ import Form from "react-bootstrap/Form"
 import Button from "react-bootstrap/Button"
 import Spinner from 'react-bootstrap/Spinner';
 import Alert from 'react-bootstrap/Alert';
+import Card from 'react-bootstrap/Card';
+import Nav from 'react-bootstrap/Nav';
 
 
 export default function DodajWydarzenie(props) {
@@ -124,56 +126,92 @@ export default function DodajWydarzenie(props) {
 
     const selectDisplay = edit ? (
 
-        <Form id = "delete-form">
-            <Form.Group controlId="formDeleteId">
-                <Form.Label>Wybierz wydarzenie do Zmodyfikowania </Form.Label>
-                <Form.Control as="select" name = "id_wydarzenie" defaultValue = "" onChange={onchangeSelect}>
-                    <option value="" selected disabled>Wydarzenie do usunięcia</option>
-                    {wydarzenie.map(wydarzenie => (
-                    <option value = {wydarzenie.id_wydarzenie}>Id = "{wydarzenie.id_wydarzenie}" Nazwa = "{wydarzenie.nazwa}"</option>
-                    ))}
-                </Form.Control>
-            </Form.Group>
+         <Form id = "input-form">
+            <Card bg ="light" border="primary" style={{width: '35rem', marginLeft: 'auto', marginRight: 'auto'}} >
+                <Card.Header>
+                    <Nav variant="tabs" defaultActiveKey="#this">
+                      <Nav.Item>
+                        <Nav.Link href="/DodajWydarzenie">Dodaj wydarzenie</Nav.Link>
+                      </Nav.Item>
+                      <Nav.Item>
+                        <Nav.Link href="/UsunWydarzenie">Usuń wydarzenie</Nav.Link>
+                      </Nav.Item>
+                      <Nav.Item>
+                        <Nav.Link href="#this">Zmodyfikuj wydarzenie</Nav.Link>
+                      </Nav.Item>
+                    </Nav>
+                </Card.Header>
+                <Card.Body>
+                    <Card.Title>Zmodyfikuj wydarzenie</Card.Title>
+                    <Card.Text>
+                        <Form.Group controlId="formDeleteId">
+                            <Form.Label>Wybierz wydarzenie do Zmodyfikowania </Form.Label>
+                            <Form.Control as="select" name = "id_wydarzenie" defaultValue = "" onChange={onchangeSelect}>
+                                <option value="" selected disabled>Wydarzenie do modyfikacji</option>
+                                {wydarzenie.map(wydarzenie => (
+                                <option value = {wydarzenie.id_wydarzenie}>Id = "{wydarzenie.id_wydarzenie}" Nazwa = "{wydarzenie.nazwa}"</option>
+                                ))}
+                            </Form.Control>
+                        </Form.Group>
+                        </Card.Text>
     
             <Button variant="primary" type="submit" onClick = {onclickSelect}>Modyfikuj</Button>
+        </Card.Body>
+            </Card>
         </Form>
     ) : (
 
         
 
         <Form id = "input-form">
-            
-        <h2> Podaj nowe parametry </h2>
+            <Card bg ="light" border="primary" style={{width: '35rem', marginLeft: 'auto', marginRight: 'auto'}} >
+                <Card.Header>
+                    <Nav variant="tabs" defaultActiveKey="#this">
+                      <Nav.Item>
+                        <Nav.Link href="/DodajWydarzenie">Dodaj wydarzenie</Nav.Link>
+                      </Nav.Item>
+                      <Nav.Item>
+                        <Nav.Link href="/UsunWydarzenie">Usuń wydarzenie</Nav.Link>
+                      </Nav.Item>
+                      <Nav.Item>
+                        <Nav.Link href="#this">Zmodyfikuj wydarzenie</Nav.Link>
+                      </Nav.Item>
+                    </Nav>
+                </Card.Header>
+                <Card.Body>
+                    <Card.Title>Podaj nowe parametry</Card.Title>
+                    <Card.Text>
+                        <Form.Group controlId="formNazwaWydarzenia">
+                            <Form.Label>Nazwa Wydarzenia</Form.Label>
+                            <Form.Control type="text" name="nazwa" onChange={onchange} required/>
+                        </Form.Group>
 
-            <Form.Group controlId="formNazwaWydarzenia">
-                <Form.Label>Nazwa Wydarzenia</Form.Label>
-                <Form.Control type="text" name="nazwa" onChange={onchange} required/>
-            </Form.Group>
+                        <Form.Group controlId="formIloscMiejsc">
+                            <Form.Label>Ilość miejsc</Form.Label>
+                            <Form.Control as="select" name = "id_sala" defaultValue = "" onChange={onchange}>
+                                <option value="" selected disabled>Wybierz ilość miejsc</option>
+                                {sala.map(sala => (
+                                    <option value = {sala.id_sala}>{sala.liczba_miejsc}</option>
+                                ))}
+                            </Form.Control>
+                        </Form.Group>
+                    
+                        <Form.Group controlId="formData">
+                            <Form.Label>Data</Form.Label>
+                            <Form.Control type="date" name="data" onChange={onchange} required/>
+                        </Form.Group>
 
-            <Form.Group controlId="formIloscMiejsc">
-                <Form.Label>Ilość miejsc</Form.Label>
-                <Form.Control as="select" name = "id_sala" defaultValue = "" onChange={onchange}>
-                    <option value="" selected disabled>Wybierz ilość miejsc</option>
-                    {sala.map(sala => (
-                        <option value = {sala.id_sala}>{sala.liczba_miejsc}</option>
-                    ))}
-                </Form.Control>
-            </Form.Group>
-            
-            <Form.Group controlId="formData">
-                <Form.Label>Data</Form.Label>
-                <Form.Control type="date" name="data" onChange={onchange} required/>
-            </Form.Group>
+                        <Form.Group controlId="formLink">
+                            <Form.Label>Link do obrazka</Form.Label>
+                            <Form.Control type="url" name="link_obrazek" onChange={onchange} required/>
+                        </Form.Group>
+                    </Card.Text>
 
-            <Form.Group controlId="formLink">
-                <Form.Label>Link do obrazka</Form.Label>
-                <Form.Control type="url" name="link_obrazek" onChange={onchange} required/>
-            </Form.Group>
-
-            <Button variant="primary" type="submit" onClick = {onclick}>Modyfikuj</Button>
-
-            <Button variant="secondary" type="reset">Reset</Button>
-
+                        <Button variant="primary" type="submit" onClick = {onclick}>Modyfikuj</Button>
+                        <Button variant="secondary" type="reset">Reset</Button>
+                        
+                </Card.Body>
+            </Card>
         </Form>
     )
     
