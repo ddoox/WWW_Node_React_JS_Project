@@ -5,7 +5,7 @@ const client = require('./Polaczenie')
 
 
 
-
+// To może się jeszcze przydać
 
 //   router.post('/', (req, res) => {
 //     const {zmienna} = req.params

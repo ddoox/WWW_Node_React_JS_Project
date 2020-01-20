@@ -32,8 +32,6 @@ function App() {
                 <Navbar.Brand href="/"> <img src={logo}/> </Navbar.Brand>
                 <Nav className="mr-auto">
                     <Nav.Link href="/">Strona Główna</Nav.Link>
-                    <Nav.Link href="/Sala">Sala test</Nav.Link>
-
                 </Nav>
                 <Button variant="outline-info" href="/DodajWydarzenie">Zarządzaj wydarzeniami</Button>
             </Navbar>
@@ -47,10 +45,9 @@ function App() {
             <Switch>
                 <Route exact path="/">
                     {/* Tak się używa komponentów */}
-                    <StronaGlowna gowno="gowno" gowno2 = "  gowno ok2"/>
+                    <StronaGlowna/>
                 </Route>
-                <Route  path="/Sala/:id">
-                    <Sala />
+                <Route  path="/Sala/:id_wydarzenie/:id_sala" component={Sala}>
                 </Route>
                 <Route exact path="/DodajWydarzenie">
                     <DodajWydarzenie />

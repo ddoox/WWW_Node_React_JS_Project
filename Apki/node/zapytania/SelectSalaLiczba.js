@@ -2,11 +2,12 @@ const router = require('express').Router()
 const client = require('./Polaczenie')
 
 
-router.get('/', (req, res) => {
-    client.query('SELECT * FROM sala')
+router.get('/:id', (req, res) => {
+    const {id} = req.params
+    client.query('SELECT liczba_miejsc FROM sala where id_sala = $1',[id])
     .then(result => {
         res.status(201).json(
-            result.rows
+            result.rows[0]
         )
     })
     .catch(err => {
@@ -15,4 +16,4 @@ router.get('/', (req, res) => {
     })
 })
 
-  module.exports = router
+module.exports = router

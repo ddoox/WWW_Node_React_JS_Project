@@ -9,11 +9,11 @@ import Nav from 'react-bootstrap/Nav';
 export default function UsunWydarzenie(props) {
 
     const [loading, setLoading] = useState(true)
-    const [formData, setFormData] = useState([
+    const [formData, setFormData] = useState(
         {
-            id_wydarzenie: null
+            id_wydarzenie: ""
         }
-    ])
+    )
     const [wydarzenie, setWydarzenie] = useState([
         {
             id_wydarzenie: null,
@@ -25,15 +25,13 @@ export default function UsunWydarzenie(props) {
     ])
 
     const czytaj = () => {
-        // console.log('test');
-        //łapię jsona z url
         fetch('http://localhost:3001/select/wszystkiewydarzenia')
             .then(res => {
                 return res.json()
             })
             .then(json => {
-                    setWydarzenie(json)
-                    setLoading(false)
+                setWydarzenie(json)
+                setLoading(false)
             })
             .catch(err => console.error(err) )
     }
@@ -43,9 +41,10 @@ export default function UsunWydarzenie(props) {
     },[])
 
 
-    const onclick = (event) => {
+    const handleSubmit = (event) => {
+        
         event.preventDefault()
-        if(formData.id_wydarzenie != null){
+
             const append = formData.id_wydarzenie
             const url = "http://localhost:3001/delete/wydarzenie/" + append
        
@@ -53,14 +52,12 @@ export default function UsunWydarzenie(props) {
                 method: 'post'
             })
 
-            czytaj()
             alert("Usunięto wydarzenie");
-            window.location.reload();
-        }else{
-            alert ("Uzupełnij pole");
+            czytaj()
+
         }
 
-    }
+    
 
     const onchange = (event) => {
         setFormData({
@@ -75,7 +72,7 @@ export default function UsunWydarzenie(props) {
         <Spinner animation="border" />
     ) : (
 
-        <Form id = "delete-form">
+        <Form id = "delete-form" onSubmit = {handleSubmit}>
             <Card bg ="light" border="primary" style={{width: '35rem', marginLeft: 'auto', marginRight: 'auto'}} >
                 <Card.Header>
                     <Nav variant="tabs" defaultActiveKey="#second">
@@ -95,8 +92,8 @@ export default function UsunWydarzenie(props) {
                     <Card.Text>
                         <Form.Group controlId="formDeleteId">
                         <Form.Label>Wybierz wydarzenie do usunięcia </Form.Label>
-                            <Form.Control as="select" name = "id_wydarzenie" defaultValue = "" onChange={onchange} required>
-                                <option value="" selected disabled>Wydarzenie do usunięcia</option>
+                            <Form.Control as="select" name = "id_wydarzenie" value = {formData.id_wydarzenie} onChange={onchange} required>
+                                <option value="" disabled>Wydarzenie do usunięcia</option>
                                 {wydarzenie.map(wydarzenie => (
                                 <option value = {wydarzenie.id_wydarzenie}>Id = "{wydarzenie.id_wydarzenie}" Nazwa = "{wydarzenie.nazwa}"</option>
                                 ))}
@@ -104,7 +101,7 @@ export default function UsunWydarzenie(props) {
                         </Form.Group>
                     </Card.Text>
      
-                    <Button variant="primary" type="submit" onClick = {onclick}>Usuń</Button>
+                    <Button variant="primary" type="submit" >Usuń</Button>
                 </Card.Body>
             </Card>
         </Form>

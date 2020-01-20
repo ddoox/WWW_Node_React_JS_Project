@@ -19,25 +19,25 @@ export default function DodajWydarzenie(props) {
             link_obrazek: "",
         }
     ])
-    const [formData, setFormData] = useState([
+    const [formData, setFormData] = useState(
         {
             id_sala: null,
             data: "",
             nazwa: "",
             link_obrazek: "",
         }
-    ])
+    )
     const [sala, setSala] = useState([
         {
             id_sala: null,
             liczba_miejsc: null,
         }
     ])
-    const [selectData, setselectData] = useState([
+    const [selectData, setselectData] = useState(
         {
             id_wydarzenie: null,
         }
-    ])
+    )
         // JSON
     // const testing = JSON.stringify({
     //     "id_wydarzenie": formData.id_wydarzenie,
@@ -50,9 +50,7 @@ export default function DodajWydarzenie(props) {
 
 
     const czytajSale = () => {
-        console.log('test');
-        //łapię jsona z url
-        fetch('http://localhost:3001/select/sale')
+        fetch('http://localhost:3001/select/sala')
             .then(res => {
                 return res.json()
             })
@@ -63,8 +61,6 @@ export default function DodajWydarzenie(props) {
     }
 
     const czytajWydarzenia = () => {
-        // console.log('test');
-        //łapię jsona z url
         fetch('http://localhost:3001/select/wszystkiewydarzenia')
             .then(res => {
                 return res.json()
@@ -80,17 +76,14 @@ export default function DodajWydarzenie(props) {
         czytajWydarzenia()
     },[])
 
-
-
-    const onchangeSelect = (event) => {
+    const handleonChangeSelect = (event) => {
         setselectData({
-            //3 kropki uzywaja danych, ktore juz sa w formData(rozlozenie obiektu)
             ...selectData,
             [event.target.name]: event.target.value
         })
     }
 
-    const onclickSelect = (event) => {
+    const handleClickSelect = (event) => {
         event.preventDefault()
         selectData.id_wydarzenie == null ? (
             setEdit(true)
@@ -98,44 +91,46 @@ export default function DodajWydarzenie(props) {
             setEdit(false)
             
         )
-
-    console.log(selectData.id_wydarzenie)
-        // formDisplay()
     }
 
-    const onchange = (event) => {
+    const handleonChangeInput = (event) => {
         setFormData({
-            //3 kropki uzywaja danych, ktore juz sa w formData(rozlozenie obiektu)
             ...formData,
             [event.target.name]: event.target.value
         })
     }
 
-    const onclick = (event) => {
+    const handleSubmit = (event) => {
         event.preventDefault()
-        if(formData.nazwa != null && formData.link_obrazek != null && formData.id_sala != null && formData.data != null){
+
             const test = formData.link_obrazek.replace(/\./g,"TuBylaKropkaNieMaToJakSwietnyKod").replace(/\:/g,"ToSieNazywaDlugiUrl").replace(/\//g,"CzasNaSlashe")
                 .replace(/\_/g,"JeszczePodkresleniaDzialaAle").replace(/\,/g,"JakbyCosToNiePisalemTegoFragmentu")
-            // console.log(test)
 
             const append = selectData.id_wydarzenie + "/" + formData.nazwa + "/" + formData.id_sala + "/" + formData.data + "/" + test
             const url = "http://localhost:3001/update/wydarzenie/" + append
-            console.log(url)
 
             fetch(url, {
                 method: 'post'
             })
-            alert("Zmodyfikowano wydarzenie")
-        }else{
-            alert("Uzupelnij wszystkie pola")
-        }
 
+            alert("Zmodyfikowano wydarzenie")
+            // alert("Uzupelnij wszystkie pola")
+        
     }
-    
+
+    const handleReset = () =>{
+        setFormData(
+        {
+            id_sala: "",
+            data: "",
+            nazwa: "",
+            link_obrazek: "",
+        })
+    }
 
     const selectDisplay = edit ? (
 
-         <Form id = "input-form">
+         <Form id = "select-form">
             <Card bg ="light" border="primary" style={{width: '35rem', marginLeft: 'auto', marginRight: 'auto'}} >
                 <Card.Header>
                     <Nav variant="tabs" defaultActiveKey="#this">
@@ -155,7 +150,7 @@ export default function DodajWydarzenie(props) {
                     <Card.Text>
                         <Form.Group controlId="formDeleteId">
                             <Form.Label>Wybierz wydarzenie do Zmodyfikowania </Form.Label>
-                            <Form.Control as="select" name = "id_wydarzenie" defaultValue = "" onChange={onchangeSelect} required>
+                            <Form.Control as="select" name = "id_wydarzenie" defaultValue = "" onChange={handleonChangeSelect} required>
                                 <option value="" selected disabled>Wydarzenie do modyfikacji</option>
                                 {wydarzenie.map(wydarzenie => (
                                 <option value = {wydarzenie.id_wydarzenie}>Id = "{wydarzenie.id_wydarzenie}" Nazwa = "{wydarzenie.nazwa}"</option>
@@ -164,15 +159,16 @@ export default function DodajWydarzenie(props) {
                         </Form.Group>
                         </Card.Text>
     
-            <Button variant="primary" type="submit" onClick = {onclickSelect}>Modyfikuj</Button>
+            <Button variant="primary" type="submit" onClick = {handleClickSelect}>Modyfikuj</Button>
         </Card.Body>
             </Card>
         </Form>
+
+
     ) : (
+       
 
-        
-
-        <Form id = "input-form">
+        <Form id = "input-form"  onSubmit= {handleSubmit}>
             <Card bg ="light" border="primary" style={{width: '35rem', marginLeft: 'auto', marginRight: 'auto'}} >
                 <Card.Header>
                     <Nav variant="tabs" defaultActiveKey="#this">
@@ -192,12 +188,12 @@ export default function DodajWydarzenie(props) {
                     <Card.Text>
                         <Form.Group controlId="formNazwaWydarzenia">
                             <Form.Label>Nazwa Wydarzenia</Form.Label>
-                            <Form.Control type="text" name="nazwa" onChange={onchange} required/>
+                            <Form.Control type="text" name="nazwa" onChange={handleonChangeInput} required/>
                         </Form.Group>
 
                         <Form.Group controlId="formIloscMiejsc">
                             <Form.Label>Ilość miejsc</Form.Label>
-                            <Form.Control as="select" name = "id_sala" defaultValue = "" onChange={onchange} required>
+                            <Form.Control as="select" name = "id_sala" value={formData.id_wydarzenie} onChange={handleonChangeInput} required>
                                 <option value="" selected disabled>Wybierz ilość miejsc</option>
                                 {sala.map(sala => (
                                     <option value = {sala.id_sala}>{sala.liczba_miejsc}</option>
@@ -207,17 +203,17 @@ export default function DodajWydarzenie(props) {
                     
                         <Form.Group controlId="formData">
                             <Form.Label>Data</Form.Label>
-                            <Form.Control type="date" name="data" onChange={onchange} required/>
+                            <Form.Control type="date" name="data" value={formData.data} onChange={handleonChangeInput} required/>
                         </Form.Group>
 
                         <Form.Group controlId="formLink">
                             <Form.Label>Link do obrazka</Form.Label>
-                            <Form.Control type="url" name="link_obrazek" onChange={onchange} required/>
+                            <Form.Control type="url" name="link_obrazek" value={formData.link_obrazek} onChange={handleonChangeInput} required/>
                         </Form.Group>
                     </Card.Text>
 
-                        <Button variant="primary" type="submit" onClick = {onclick}>Modyfikuj</Button>
-                        <Button variant="secondary" type="reset">Reset</Button>
+                        <Button variant="primary" type="submit">Modyfikuj</Button>
+                        <Button variant="secondary" type="reset" onClick = {handleReset}>Reset</Button>
                         
                 </Card.Body>
             </Card>

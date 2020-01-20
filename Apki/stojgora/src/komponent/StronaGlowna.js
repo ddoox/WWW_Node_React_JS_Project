@@ -14,28 +14,8 @@ import {
     Link
   } from "react-router-dom";
 
-
-
-
-
-//komponent
 export default function StronaGlowna(props) {
-    //wczytuję argument(props) i przypisuję do zmiennych
-    const { gowno,gowno2 } = props;
-    //to nizej funkcja do odczytywania jsona - tak jak pola kompnentu w klasie
-    //useState ustawia wartosc domyslna. useState(wartosc domyslna)
-  //   const [ data, setdata] = useState([
-  //     {
-  //         id_sali: null,
-  //         nr_miejsca: "",
-  //         stan: 0,
-  //         cena: 0,
-  //         imie: "",
-  //         nazwisko: ""
-  //     }
-  // ])
 
-  // TODO: Mniejsze obrazki ;)
 
     const [wydarzenie, setWydarzenie] = useState([
         {
@@ -49,10 +29,8 @@ export default function StronaGlowna(props) {
 
     const [loading, setLoading] = useState(true)
 
-    /*funkcja*/
+
     const czytaj = () => {
-        console.log('test');
-        //łapię jsona z url
         fetch('http://localhost:3001/select/wszystkiewydarzenia')
             .then(res => {
                 return res.json()
@@ -68,26 +46,14 @@ export default function StronaGlowna(props) {
         czytaj()
     },[])
 
-    function onclick(){
-        // const {iddoprzkazania} = props;
 
-        // <Switch>
-        // <Route exact path="/DodajWydarzenie">
-        //     <DodajWydarzenie />
-        // </Route>
-        // </Switch>
-        // return(<Redirect to ="/Sala">
-        //             <Sala />
-        //         </Redirect>)
-        // console.log(iddoprzkazania)
 
-    }
     const datadisplay = loading ? (
         <Spinner animation="border" />
     ) : (
         <div>
-            {wydarzenie.map(wydarzenie => (
-                <Row className="justify-content-md-center p-2">
+            {wydarzenie.map((wydarzenie,index) => (
+                <Row className="justify-content-md-center p-2" key = {index} >
                     <Col xs={12} md={10} lg={8}>
                         <Card >
                         <Card.Img variant="top" src={wydarzenie.link_obrazek}/>
@@ -97,31 +63,10 @@ export default function StronaGlowna(props) {
                                         <Card.Title>{wydarzenie.id_wydarzenie}: {wydarzenie.nazwa}</Card.Title>
                                         <Card.Text>{wydarzenie.data}</Card.Text>
                                     </Col>
-                                    <Col>
-                                    
-                                    
-                                    {/* <Button variant="primary" >
-
-                                        <Route path="/Sala/:id" component={Sala}/>
-                                    
-                                    </Button> */}
-
-
-
-                                        <Button variant="primary">
-                                        {/* <Button color = "white" variant="primary" > */}
-                                            
-                                            <Link to={ "/Sala/" + wydarzenie.id_wydarzenie} className="btn btn-primary">
-                                            {/* {/* <Link to={"/Sala/" + wydarzenie.id_wydarzenie} atrybut = "ok" className="btn btn-primary" > */}
-                                    Rozkminiam przekierowania 
-
-                                            </Link> 
-                                            {/* Rozkminiam przekierowania */}
-                                            {/* <Sala /> */}
-
-
-
-                                        </Button>
+                                    <Col>                                          
+                                        <Link to={ "/Sala/" + wydarzenie.id_wydarzenie +"/" + wydarzenie.id_sala} className="btn btn-primary">
+                                            Rezerwuj 
+                                        </Link> 
                                     </Col>
                                 </Row>
                             </Card.Body>
@@ -132,8 +77,6 @@ export default function StronaGlowna(props) {
         </div>
     )
 
-
-    //Rzeczy do wyświetlenia przez komponent
     return (
 
       <div>

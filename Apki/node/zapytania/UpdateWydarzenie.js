@@ -10,11 +10,9 @@ router.post('/:id_wydarzenie/:nazwa/:id_sala/:data/:link', (req, res) => {
    
     try 
     {
-
         let queryText = 'UPDATE  wydarzenie set id_sala = $1, data = $2, nazwa = $3, link_obrazek = $4 WHERE id_wydarzenie = $5'
         let queryParams = [id_sala, data, nazwa, odszyfrowanyLink,id_wydarzenie]
         client.query(queryText, queryParams)
-
     }
     catch(err){
         console.error(err)
