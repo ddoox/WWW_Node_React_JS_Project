@@ -5,6 +5,7 @@ import scena from '../dodatki/scena.jpg';
 
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import ButtonGroup from 'react-bootstrap/ButtonGroup';
 
 
 
@@ -72,22 +73,22 @@ export default function Sala(props) {
         let z = 1
         for(let i = 1; i<= sala.liczba_miejsc/10; i++){
             
-            results.push(<div></div>)
+            results.push(<div><ButtonGroup></ButtonGroup></div>)
 
             for(let k = 1; k<= 10; k++){
                 results.push((
-                     <Button variant="primary" disabled value = {z} key = {z}>{z}</Button>                    
+                     <Button variant="primary" disabled value = {z} key = {z} style={{width: '50px', height: '60px'}}>{z}</Button>                    
                 ))
                 z++
             }
         }
 
-        results.push(<div></div>)
+        results.push(<div><ButtonGroup></ButtonGroup></div>)
         for(let h = 1; h<= sala.liczba_miejsc%10; h++){
 
 
             results.push((
-                <Button variant="secondary" value = {z} key = {z}>{z}</Button>
+                <Button variant="secondary" value = {z} key = {z} style={{width: '50px', height: '60px'}}> {z} </Button>
            ))
            z++
         }
@@ -97,39 +98,28 @@ export default function Sala(props) {
 
     const saladisplay =  
     (
-	    <div>
-	    	<Row style={{width: '35rem', marginLeft: 'auto', marginRight: 'auto'}}>
-		    	<Col >
+	    <div style={{width: '35rem', marginLeft: 'auto', marginRight: 'auto', paddingBottom: '40px'}}>
+	    	
+		
 		    		<img src={scena} />
-		    	</Col>
-	    	</Row>
-	    	<Row>
-	    		<Col>
-	    		{/* id wydarzenia: {id_wydarzenia} */}
-	    		{/* id_sali: {id_sali_z_linka} */}
-	    		</Col>
-	    	</Row>
+		
 	    </div>
     )
 
  
 
     return (
+    <>
     	<div>
-
-
-
-
-
     		{saladisplay}
             <h2> Ilość miejsc - {sala.liczba_miejsc}</h2>
             <h2> Ilość miejsc - {zajeteMiejsca[0].numer_miejsca}</h2>
             {/* <h2> Ilość miejsc - {zajeteMiejsca[].numer_miejsca}</h2> */}
-
-            {funkcjaKrzesla()}
+            <div style={{width: '35rem', marginLeft: 'auto', marginRight: 'auto'}} >
+                {funkcjaKrzesla()}
+            </div>
        	</div>
-    
-    
-    
+
+    </>
     )
 }
