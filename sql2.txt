@@ -1,0 +1,24 @@
+CREATE TABLE sala (
+  id_sala serial NOT NULL PRIMARY KEY,
+  liczba_miejsc integer NOT NULL
+);
+
+
+CREATE TABLE wydarzenie (
+  id_wydarzenie serial NOT NULL PRIMARY KEY,
+  id_sala int NOT NULL,
+  data character varying(10) NOT NULL,
+  nazwa character varying(100) NOT NULL,
+  link_obrazek character varying(500),
+  FOREIGN KEY (id_sala) REFERENCES sala(id_sala)
+);
+
+CREATE TABLE rezerwacja (
+  id_rezerwacja serial NOT NULL,
+  id_wydarzenie int NOT NULL,
+  numer_miejsca int NOT NULL,
+  CONSTRAINT pk_rezerwacja PRIMARY KEY (id_wydarzenie,numer_miejsca),
+  FOREIGN KEY (id_wydarzenie) REFERENCES wydarzenie(id_wydarzenie)
+);
+
+Tylko nie mam jak do tego podpiąć id_rezerwacji.. ale w sumie ono się będzie samo generować to się nie powtórzy xD
