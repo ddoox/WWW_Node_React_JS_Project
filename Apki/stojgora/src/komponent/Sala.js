@@ -3,6 +3,8 @@ import React, {useState, useEffect} from 'react'
 import Button from 'react-bootstrap/Button';
 import scena from '../dodatki/scena.jpg';
 
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 
 
 
@@ -64,6 +66,8 @@ export default function Sala(props) {
 
     const funkcjaKrzesla = () => {
 
+        console.log(zajeteMiejsca)
+
         let results = []
         let z = 1
         for(let i = 1; i<= sala.liczba_miejsc/10; i++){
@@ -91,13 +95,35 @@ export default function Sala(props) {
 
     }
 
+    const saladisplay =  
+    (
+	    <div>
+	    	<Row style={{width: '35rem', marginLeft: 'auto', marginRight: 'auto'}}>
+		    	<Col >
+		    		<img src={scena} />
+		    	</Col>
+	    	</Row>
+	    	<Row>
+	    		<Col>
+	    		{/* id wydarzenia: {id_wydarzenia} */}
+	    		{/* id_sali: {id_sali_z_linka} */}
+	    		</Col>
+	    	</Row>
+	    </div>
+    )
+
  
 
     return (
     	<div>
-    		{/* {saladisplay} */}zajeteMiejsca
+
+
+
+
+
+    		{saladisplay}
             <h2> Ilość miejsc - {sala.liczba_miejsc}</h2>
-            {/* <h2> Ilość miejsc - {zajeteMiejsca[0].numer_miejsca}</h2> */}
+            <h2> Ilość miejsc - {zajeteMiejsca[0].numer_miejsca}</h2>
             {/* <h2> Ilość miejsc - {zajeteMiejsca[].numer_miejsca}</h2> */}
 
             {funkcjaKrzesla()}
