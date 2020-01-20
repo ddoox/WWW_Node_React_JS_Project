@@ -10,14 +10,14 @@ import Nav from 'react-bootstrap/Nav';
 export default function DodajWydarzenie(props) {
  
     const [loading, setLoading] = useState(true)
-    const [formData, setFormData] = useState([
+    const [formData, setFormData] = useState(
         {
-            id_sala: null,
+            id_sala: "",
             data: "",
             nazwa: "",
             link_obrazek: "",
         }
-    ])
+    )
     const [sala, setSala] = useState([
         {
             id_sala: null,
@@ -26,8 +26,6 @@ export default function DodajWydarzenie(props) {
     ])
 
     const czytaj = () => {
-        console.log('test');
-        //łapię jsona z url
         fetch('http://localhost:3001/select/sale')
             .then(res => {
                 return res.json()
@@ -46,36 +44,42 @@ export default function DodajWydarzenie(props) {
 
     const onchange = (event) => {
         setFormData({
-            //3 kropki uzywaja danych, ktore juz sa w formData(rozlozenie obiektu)
             ...formData,
             [event.target.name]: event.target.value
         })
     }
+    
+    const handleReset = () =>{
+        setFormData(
+        {
+            id_sala: "",
+            data: "",
+            nazwa: "",
+            link_obrazek: "",
+        })
+    }
 
-    const onclick = (event) => {
+    const handleSubmit = (event) => {
         event.preventDefault()
 
-        if(formData.nazwa != null && formData.link_obrazek != null && formData.id_sala != null && formData.data != null){
+        // if(formData.nazwa != null && formData.link_obrazek != null && formData.id_sala != null && formData.data != null){
 
+            // Ultra dobry sposob na przekazanie linku w linku
             const test = formData.link_obrazek.replace(/\./g,"TuBylaKropkaNieMaToJakSwietnyKod").replace(/\:/g,"ToSieNazywaDlugiUrl").replace(/\//g,"CzasNaSlashe")
                 .replace(/\_/g,"JeszczePodkresleniaDzialaAle").replace(/\,/g,"JakbyCosToNiePisalemTegoFragmentu")
-            // console.log(test)
 
             const append = formData.nazwa + "/" + formData.id_sala + "/" + formData.data + "/" + test
             const url = "http://localhost:3001/insert/wydarzenie/" + append
-            console.log(url)
 
             fetch(url, {
                 method: 'post'
             });
 
             alert("Dodano wydarzenie " + formData.nazwa);
-            window.location.reload();
-        }else{
-            alert("Uzupelnij wszystkie pola!!")
-        }
-
-//TODO: Reset wartosci, alert
+            // window.location.reload();
+        // }else{
+        //     alert("Uzupelnij wszystkie pola!!")
+        // }
 
     }
 
@@ -84,8 +88,7 @@ export default function DodajWydarzenie(props) {
         <Spinner animation="border" />
     ) : (
 
-//TODO: Trzeba dodać walidacje, na razie nie wiem jak
-        <Form id = "input-form">
+        <Form id = "input-form" onSubmit = {handleSubmit}>
             <Card bg ="light" border="primary" style={{width: '35rem', marginLeft: 'auto', marginRight: 'auto'}} >
                 <Card.Header>
                     <Nav variant="tabs" defaultActiveKey="#first">
@@ -106,12 +109,12 @@ export default function DodajWydarzenie(props) {
 
                         <Form.Group controlId="formNazwaWydarzenia">
                             <Form.Label>Nazwa Wydarzenia</Form.Label>
-                            <Form.Control type="text" name="nazwa" onChange={onchange} required/>
+                            <Form.Control type="text" name="nazwa" value={formData.nazwa} onChange={onchange} required/>
                         </Form.Group>
 
                         <Form.Group controlId="formIloscMiejsc">
                             <Form.Label>Ilość miejsc</Form.Label>
-                            <Form.Control as="select" name = "id_sala" defaultValue = "" onChange={onchange} required>
+                            <Form.Control as="select" name = "id_sala" value={formData.id_sala} onChange={onchange} required>
                                 <option value="" selected disabled>Wybierz ilość miejsc</option>
                                 {sala.map(sala => (
                                     <option value = {sala.id_sala}>{sala.liczba_miejsc}</option>
@@ -121,18 +124,18 @@ export default function DodajWydarzenie(props) {
                         
                         <Form.Group controlId="formData">
                             <Form.Label>Data</Form.Label>
-                            <Form.Control type="date" name="data" onChange={onchange} required/>
+                            <Form.Control type="date" name="data" value={formData.data} onChange={onchange} required/>
                         </Form.Group>
 
                         <Form.Group controlId="formLink">
                             <Form.Label>Link do obrazka</Form.Label>
-                            <Form.Control type="url" name="link_obrazek" onChange={onchange} required/>
+                            <Form.Control type="url" name="link_obrazek" value={formData.link_obrazek} onChange={onchange} required/>
                         </Form.Group>
                     </Card.Text>
 
-                    <Button variant="primary" type="submit" onClick = {onclick}>Dodaj</Button>
+                    <Button variant="primary" type="submit" >Dodaj</Button>
 
-                    <Button variant="secondary" type="reset">Reset</Button>
+                    <Button variant="secondary" type="reset" onClick = {handleReset}>Reset</Button>
                 </Card.Body>
             </Card>
         </Form>

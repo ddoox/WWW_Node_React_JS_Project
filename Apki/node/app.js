@@ -11,6 +11,8 @@ const InsertWydarzenie = require('./zapytania/InsertWydarzenie')
 const UsunWydarzenie = require('./zapytania/DeleteWydarzenie')
 const SelectWydarzenie = require('./zapytania/SelectWydarzenie')
 const UpdateWydarzenie = require('./zapytania/UpdateWydarzenie')
+const SelectSalaLiczba = require('./zapytania/SelectSalaLiczba')
+const SelectRezerwacja = require('./zapytania/SelectRezerwacja')
 
 
 app.use(cors())
@@ -23,13 +25,15 @@ app.use(
 )
 //Otrzymuję jsona z localhost
 //Jak chcę pobrać z innego miejsca to '/innemiejsce' - url
-app.get('/', (req, res) => res.json({msg: 'Hello World!'}))
+app.get('/', (req, res) => res.json({msg: 'Hello wanderer!'}))
 
 app.use('/select/wszystkiewydarzenia', WszystkieWydarzenia)
-app.use('/select/sale', WszystkieSale)
+app.use('/select/sala', WszystkieSale)
 app.use('/insert/wydarzenie', InsertWydarzenie)
 app.use('/delete/wydarzenie', UsunWydarzenie)
 app.use('/select/wydarzenie', SelectWydarzenie)
 app.use('/update/wydarzenie', UpdateWydarzenie)
+app.use('/select/sala/liczba', SelectSalaLiczba)
+app.use('/select/rezerwacja', SelectRezerwacja)
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`))
