@@ -73,28 +73,43 @@ export default function Sala(props) {
             ...wybraneMiejsce,
             [event.target.name]: event.target.value
         })
-
-        console.log(wybraneMiejsce)
-
     }
 
     const handleSend = (event) => {
         event.preventDefault()
 
-
         if(wybraneMiejsce.numer_miejsca != 0){
-            
+
             const append = id_wydarzenie + "/" + wybraneMiejsce.numer_miejsca
             const url = "http://localhost:3001/insert/rezerwacja/" + append
 
             fetch(url, {
                 method: 'post'
-            });
-        }
-        setWybraneMiejsce(0)
-        czytajRezerwacja()
-    }
+            }).then(res => {
+                return res.json()
+            })
+            .then(json => {
 
+                if(json.id_rezerwacja != undefined){
+
+                    alert("Numer Rezerwacji: " + json.id_rezerwacja)
+                    setWybraneMiejsce({
+                        numer_miejsca: 0
+                    })
+                    czytajRezerwacja()
+                }else{
+                    
+                    setWybraneMiejsce({
+                        numer_miejsca: 0
+                    })
+                    alert("Rezerwacja nieudana")
+                }
+            })
+            .catch(err => console.error(err) )
+        }
+
+    }
+    
 
     const funkcjaKrzesla = () => {
 
