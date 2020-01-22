@@ -2,9 +2,11 @@ import React, {useState,useEffect} from 'react'
 import Form from "react-bootstrap/Form"
 import Button from "react-bootstrap/Button"
 import Spinner from 'react-bootstrap/Spinner';
-import Alert from 'react-bootstrap/Alert';
 import Card from 'react-bootstrap/Card';
 import Nav from 'react-bootstrap/Nav';
+import CuteAlert from './CuteAlert';
+import { render } from '@testing-library/react';
+
 
 export default function UsunSale(props) {
 const [loading, setLoading] = useState(true)
@@ -47,11 +49,10 @@ const handleSubmit = (event) => {
                 method: 'post'
             })
 
-            alert("Usunięto sale");
+            render((
+                <CuteAlert tekstglowny = "Akcja zakończona pomyślnie" tekstpomocniczy ={"Usunięto salę"} />                
+            ))
             czytaj()
-            window.location.reload();
-
-
         }
 
          const onchange = (event) => {
@@ -85,7 +86,7 @@ const handleSubmit = (event) => {
                             <Form.Control as="select" name = "id_sala" value = {formData.id_sala} onChange={onchange} required>
                                 <option value="" disabled>Sala do usunięcia</option>
                                 {sala.map(sala => (
-                                <option value = {sala.id_sala}>Id = "{sala.id_sala}" Nazwa = "{sala.liczba_miejsc}"</option>
+                                <option key = {sala.id_sala} value = {sala.id_sala}>Id = "{sala.id_sala}" Nazwa = "{sala.liczba_miejsc}"</option>
                                 ))}
                             </Form.Control>
                         </Form.Group>

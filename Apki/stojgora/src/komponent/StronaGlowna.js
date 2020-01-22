@@ -1,18 +1,9 @@
 import React, {useState,useEffect} from 'react'
-//import elementów z Bootstrapa
-import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import Spinner from 'react-bootstrap/Spinner';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import Sala from './Sala';
-
-import {
-    BrowserRouter as Router,
-    Switch,
-    Route,
-    Link
-  } from "react-router-dom";
+import {Link} from "react-router-dom";
 
 export default function StronaGlowna(props) {
 

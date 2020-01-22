@@ -2,10 +2,10 @@ import React, {useState,useEffect} from 'react'
 import Form from "react-bootstrap/Form"
 import Button from "react-bootstrap/Button"
 import Spinner from 'react-bootstrap/Spinner';
-import Alert from 'react-bootstrap/Alert';
 import Card from 'react-bootstrap/Card';
 import Nav from 'react-bootstrap/Nav';
-
+import CuteAlert from './CuteAlert';
+import { render } from '@testing-library/react';
 
 export default function DodajWydarzenie(props) {
  
@@ -62,8 +62,6 @@ export default function DodajWydarzenie(props) {
     const handleSubmit = (event) => {
         event.preventDefault()
 
-        // if(formData.nazwa != null && formData.link_obrazek != null && formData.id_sala != null && formData.data != null){
-
             // Ultra dobry sposob na przekazanie linku w linku
             const test = formData.link_obrazek.replace(/\./g,"TuBylaKropkaNieMaToJakSwietnyKod").replace(/\:/g,"ToSieNazywaDlugiUrl").replace(/\//g,"CzasNaSlashe")
                 .replace(/\_/g,"JeszczePodkresleniaDzialaAle").replace(/\,/g,"JakbyCosToNiePisalemTegoFragmentu")
@@ -75,11 +73,10 @@ export default function DodajWydarzenie(props) {
                 method: 'post'
             });
 
-            alert("Dodano wydarzenie " + formData.nazwa);
-            // window.location.reload();
-        // }else{
-        //     alert("Uzupelnij wszystkie pola!!")
-        // }
+            render((
+                <CuteAlert tekstglowny = "Akcja zakończona pomyślnie" tekstpomocniczy ={"Dodano wydarzenie: " + formData.nazwa} />                
+            ))
+            handleReset()
 
     }
 
@@ -146,6 +143,5 @@ export default function DodajWydarzenie(props) {
         <div>
             {formDisplay}
         </div>
-
     )
 }

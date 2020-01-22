@@ -1,10 +1,10 @@
 import React, {useState,useEffect} from 'react'
 import Form from "react-bootstrap/Form"
 import Button from "react-bootstrap/Button"
-import Spinner from 'react-bootstrap/Spinner';
-import Alert from 'react-bootstrap/Alert';
 import Card from 'react-bootstrap/Card';
 import Nav from 'react-bootstrap/Nav';
+import CuteAlert from './CuteAlert';
+import { render } from '@testing-library/react';
 
 
 export default function DodajWydarzenie(props) {
@@ -38,16 +38,6 @@ export default function DodajWydarzenie(props) {
             id_wydarzenie: null,
         }
     )
-        // JSON
-    // const testing = JSON.stringify({
-    //     "id_wydarzenie": formData.id_wydarzenie,
-    // })
-
-    // fetch("http://localhost:3001/delete/wydarzenie/",{
-    //     method:'post',
-    //     body: testing          
-    // })
-
 
     const czytajSale = () => {
         fetch('http://localhost:3001/select/sala')
@@ -66,7 +56,7 @@ export default function DodajWydarzenie(props) {
                 return res.json()
             })
             .then(json => {
-                    setWydarzenie(json)                   
+                setWydarzenie(json)                   
             })
             .catch(err => console.error(err) )
     }
@@ -113,9 +103,9 @@ export default function DodajWydarzenie(props) {
                 method: 'post'
             })
 
-            alert("Zmodyfikowano wydarzenie")
-            // alert("Uzupelnij wszystkie pola")
-        
+            render((
+                <CuteAlert tekstglowny = "Akcja zakończona pomyślnie" tekstpomocniczy ={"Zmodyfikowano salę"} />                
+            ))
     }
 
     const handleReset = () =>{
@@ -220,8 +210,6 @@ export default function DodajWydarzenie(props) {
         </Form>
     )
     
-
-
     return (
 
         <div>
