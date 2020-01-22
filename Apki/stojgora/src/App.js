@@ -19,6 +19,7 @@ import UsunWydarzenie from './komponent/UsunWydarzenie';
 import ZmodyfikujWydarzenie from './komponent/ZmodyfikujWydarzenie';
 import Sala from './komponent/Sala';
 import DodajSale from './komponent/DodajSale';
+import UsunSale from './komponent/UsunSale';
 
 import logo from './dodatki/logo1.jpg'
 
@@ -32,9 +33,11 @@ function App() {
             <Navbar bg="dark" variant="dark" style={{marginBottom: '3rem'}}>
                 <Navbar.Brand href="/"> <img src={logo}/> </Navbar.Brand>
                 <Nav className="mr-auto">
-                    <Nav.Link href="/">Strona Główna</Nav.Link>
+                    <Nav.Link href="/">Aktualne wydarzenia</Nav.Link>
+                    <Nav.Link href="/DodajWydarzenie">Zarządzaj wydarzeniami</Nav.Link>
+                   <Nav.Link href="/DodajSale">Zarządzaj salami</Nav.Link>
                 </Nav>
-                <Button variant="outline-info" href="/DodajWydarzenie">Zarządzaj wydarzeniami</Button>
+                
             </Navbar>
         
 
@@ -61,6 +64,9 @@ function App() {
                 </Route>
                 <Route exact path="/DodajSale">
                         <DodajSale />
+                </Route>
+                 <Route exact path="/UsunSale">
+                        <UsunSale />
                 </Route>
 
             </Switch>

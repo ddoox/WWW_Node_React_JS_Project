@@ -9,7 +9,6 @@ import Nav from 'react-bootstrap/Nav';
 export default function DodajSale(props) {
 	 const [sala, setSala] = useState([
         {
-            id_sala: "",
             liczba_miejsc: "",
         }
     ])
@@ -57,13 +56,10 @@ export default function DodajSale(props) {
             <Card.Header>
                 <Nav variant="tabs" defaultActiveKey="#first">
                   <Nav.Item>
-                    <Nav.Link href="#first">Dodaj Sale</Nav.Link>
+                    <Nav.Link href="#first">Dodaj sale</Nav.Link>
                   </Nav.Item>
                   <Nav.Item>
-                    <Nav.Link href="/UsunWydarzenie">Usuń wydarzenie</Nav.Link>
-                  </Nav.Item>
-                  <Nav.Item>
-                    <Nav.Link href="/ZmodyfikujWydarzenie">Zmodyfikuj wydarzenie</Nav.Link>
+                    <Nav.Link href="/UsunSale">Usuń sale</Nav.Link>
                   </Nav.Item>
                 </Nav>
             </Card.Header>
@@ -73,7 +69,7 @@ export default function DodajSale(props) {
 
                     <Form.Group controlId="formIloscMiejsc">
                         <Form.Label>Ilosc miejsc na sali:</Form.Label>
-                        <Form.Control type="number" name="ilosc" value={sala.liczba_miejsc} onChange={onchange} required/>
+                        <Form.Control type="number" name="liczba_miejsc" value={sala.liczba_miejsc} onChange={onchange} required/>
                     </Form.Group>
                 </Card.Text>
 

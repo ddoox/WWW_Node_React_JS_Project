@@ -3,7 +3,7 @@ const client = require('./Polaczenie')
 
 
 router.get('/', (req, res) => {
-    client.query('SELECT * FROM wydarzenie')
+    client.query('SELECT * FROM wydarzenie ORDER BY data')
     .then(result => {
         res.status(201).json(
             result.rows

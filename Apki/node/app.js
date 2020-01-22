@@ -15,6 +15,7 @@ const UpdateWydarzenie = require('./zapytania/UpdateWydarzenie')
 const SelectSalaLiczba = require('./zapytania/SelectSalaLiczba')
 const SelectRezerwacja = require('./zapytania/SelectRezerwacja')
 const InsertSala = require('./zapytania/InsertSala')
+const UsunSale = require('./zapytania/DeleteSale')
 
 
 app.use(cors())
@@ -39,6 +40,7 @@ app.use('/update/wydarzenie', UpdateWydarzenie)
 app.use('/select/sala/liczba', SelectSalaLiczba)
 app.use('/select/rezerwacja', SelectRezerwacja)
 app.use('/insert/sala', InsertSala)
+app.use('/delete/sala', UsunSale)
 
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`))

@@ -133,30 +133,30 @@ export default function Sala(props) {
 
                 if (zajeteMiejscaIntArray.includes(z)){
                     results.push((
-                    <Button variant="danger" name = "numer_miejsca" disabled value = {z} key = {z} style={{width: '50px', height: '60px'}} onClick = {handleClick}>{z}</Button>                                            
+                    <Button variant="danger" name = "numer_miejsca" disabled value = {z} key = {z} style={{width: '50px', height: '40px'}} onClick = {handleClick}>{z}</Button>                                            
                    ))
                    z++
                 }else{
                     results.push((
-                        <Button variant="primary" name = "numer_miejsca" value = {z} key = {z} style={{width: '50px', height: '60px'}} onClick = {handleClick}>{z}</Button>                    
+                        <Button variant="primary" name = "numer_miejsca" value = {z} key = {z} style={{width: '50px', height: '40px'}} onClick = {handleClick}>{z}</Button>                    
                     ))
                     z++
                 }
             }
         }
 
-        results.push(<div> Potwierdź wybór</div>)
+        results.push(<div></div>)
         for(let h = 1; h<= sala.liczba_miejsc%10; h++){
 
 
             if (zajeteMiejscaIntArray.includes(z)){
                 results.push((
-                <Button variant="danger" name = "numer_miejsca" disabled value = {z} key = {z} style={{width: '50px', height: '60px'}} onClick = {handleClick}>{z}</Button>                                            
+                <Button variant="danger" name = "numer_miejsca" disabled value = {z} key = {z} style={{width: '50px', height: '40px'}} onClick = {handleClick}>{z}</Button>                                            
                ))
                z++
             }else{
                 results.push((
-                    <Button variant="primary" name = "numer_miejsca" value = {z} key = {z} style={{width: '50px', height: '60px'}} onClick = {handleClick}>{z}</Button>                    
+                    <Button variant="primary" name = "numer_miejsca" value = {z} key = {z} style={{width: '50px', height: '40px'}} onClick = {handleClick}>{z}</Button>                    
                 ))
                 z++
             }
@@ -188,10 +188,13 @@ export default function Sala(props) {
     return (
     <>
     	<div>
-            <div style={{width: '35rem', marginLeft: 'auto', marginRight: 'auto'}} >
+            <div style={{width: '520px', marginLeft: 'auto', marginRight: 'auto'}} >
                 {saladisplay}
                 {datadisplay}
-                <Button onClick = {handleSend}> Rezerwuj</Button>
+            </div>
+            <div style={{width: '15rem', marginLeft: 'auto', marginRight: 'auto'}}>
+                <p> POTWIERDZ WYBOR </p>
+                <Button onClick = {handleSend} style={{width: '10rem'}}> Rezerwuj</Button>
             </div>
        	</div>
 
