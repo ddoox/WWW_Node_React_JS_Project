@@ -10,7 +10,7 @@ CREATE TABLE wydarzenie (
   data character varying(10) NOT NULL,
   nazwa character varying(100) NOT NULL,
   link_obrazek character varying(500),
-  FOREIGN KEY (id_sala) REFERENCES sala(id_sala)
+  FOREIGN KEY (id_sala) REFERENCES sala(id_sala) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 CREATE TABLE rezerwacja (

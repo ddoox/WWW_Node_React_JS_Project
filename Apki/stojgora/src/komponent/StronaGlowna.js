@@ -56,15 +56,17 @@ export default function StronaGlowna(props) {
                 <Row className="justify-content-md-center p-2" key = {index} >
                     <Col xs={12} md={10} lg={8}>
                         <Card >
+                        <Link to={ "/Sala/" + wydarzenie.id_wydarzenie +"/" + wydarzenie.id_sala} >
                         <Card.Img variant="top" src={wydarzenie.link_obrazek}/>
+                        </Link>
                             <Card.Body>
                                 <Row>
-                                    <Col xs={6} sm={7} md={8}>
+                                    <Col xs={7} sm={8} md={9}>
                                         <Card.Title>{wydarzenie.id_wydarzenie}: {wydarzenie.nazwa}</Card.Title>
                                         <Card.Text>{wydarzenie.data}</Card.Text>
                                     </Col>
-                                    <Col>                                          
-                                        <Link to={ "/Sala/" + wydarzenie.id_wydarzenie +"/" + wydarzenie.id_sala} className="btn btn-primary">
+                                    <Col >                                          
+                                        <Link to={ "/Sala/" + wydarzenie.id_wydarzenie +"/" + wydarzenie.id_sala} className="btn btn-primary btn-lg" >
                                             Rezerwuj 
                                         </Link> 
                                     </Col>
