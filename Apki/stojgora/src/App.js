@@ -18,6 +18,7 @@ import DodajWydarzenie from './komponent/DodajWydarzenie';
 import UsunWydarzenie from './komponent/UsunWydarzenie';
 import ZmodyfikujWydarzenie from './komponent/ZmodyfikujWydarzenie';
 import Sala from './komponent/Sala';
+import DodajSale from './komponent/DodajSale';
 
 import logo from './dodatki/logo1.jpg'
 
@@ -58,6 +59,10 @@ function App() {
                 <Route exact path="/ZmodyfikujWydarzenie">
                         <ZmodyfikujWydarzenie />
                 </Route>
+                <Route exact path="/DodajSale">
+                        <DodajSale />
+                </Route>
+
             </Switch>
         </Router>
     );
