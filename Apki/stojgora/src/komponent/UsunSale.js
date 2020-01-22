@@ -86,7 +86,7 @@ const handleSubmit = (event) => {
                             <Form.Control as="select" name = "id_sala" value = {formData.id_sala} onChange={onchange} required>
                                 <option value="" disabled>Sala do usunięcia</option>
                                 {sala.map(sala => (
-                                <option key = {sala.id_sala} value = {sala.id_sala}>Id = "{sala.id_sala}" Nazwa = "{sala.liczba_miejsc}"</option>
+                                <option key = {sala.id_sala} value = {sala.id_sala}>Id = "{sala.id_sala}" Liczba miejsc = "{sala.liczba_miejsc}"</option>
                                 ))}
                             </Form.Control>
                         </Form.Group>
