@@ -1,9 +1,5 @@
-// Placeholder
-
 const router = require('express').Router()
 const client = require('./Polaczenie')
-
-
 
 router.post('/:id_wydarzenie/:numer_miejsca', async (req, res) => {
     const {id_wydarzenie,numer_miejsca} = req.params
@@ -14,7 +10,6 @@ router.post('/:id_wydarzenie/:numer_miejsca', async (req, res) => {
         await client.query(queryInsertText, queryParams)
 
         let querySelectText = 'SELECT id_rezerwacja FROM rezerwacja where id_wydarzenie = $1 AND numer_miejsca = $2'
-        // let queryParams2 = [id_wydarzenie,numer_miejsca]
 
         await client.query(querySelectText, queryParams)
         .then(result => {

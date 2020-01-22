@@ -2,9 +2,11 @@ import React, {useState,useEffect} from 'react'
 import Form from "react-bootstrap/Form"
 import Button from "react-bootstrap/Button"
 import Spinner from 'react-bootstrap/Spinner';
-import Alert from 'react-bootstrap/Alert';
 import Card from 'react-bootstrap/Card';
 import Nav from 'react-bootstrap/Nav';
+import CuteAlert from './CuteAlert';
+import { render } from '@testing-library/react';
+
 
 export default function UsunWydarzenie(props) {
 
@@ -52,9 +54,10 @@ export default function UsunWydarzenie(props) {
                 method: 'post'
             })
 
-            alert("Usunięto wydarzenie");
+            render((
+                <CuteAlert tekstglowny = "Akcja zakończona pomyślnie" tekstpomocniczy ={"Usunięto wydarzenie"} />                
+            ))
             czytaj()
-
         }
 
     

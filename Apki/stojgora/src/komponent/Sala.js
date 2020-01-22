@@ -1,16 +1,13 @@
-// Na razie tylko placeholder
 import React, {useState, useEffect} from 'react'
 import Button from 'react-bootstrap/Button';
 import scena from '../dodatki/scena.jpg';
-
 import Spinner from 'react-bootstrap/Spinner';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
-import ButtonGroup from 'react-bootstrap/ButtonGroup';
-
+import { render } from '@testing-library/react';
+import CuteAlert from './CuteAlert';
 
 
 export default function Sala(props) {
+    
 
     const {id_wydarzenie,id_sala} = props.match.params
 
@@ -66,7 +63,6 @@ export default function Sala(props) {
         czytajRezerwacja()
     },[])
 
-        
     const handleClick = (event) => {
         event.preventDefault()
         setWybraneMiejsce({
@@ -91,8 +87,9 @@ export default function Sala(props) {
             .then(json => {
 
                 if(json.id_rezerwacja != undefined){
-
-                    alert("Numer Rezerwacji: " + json.id_rezerwacja)
+                    render((
+                        <CuteAlert tekstglowny = "Rezerwacja zakończona pomyślnie" tekstpomocniczy ={"Id rezerwacji: " + json.id_rezerwacja} />                
+                    ))
                     setWybraneMiejsce({
                         numer_miejsca: 0
                     })
@@ -102,7 +99,9 @@ export default function Sala(props) {
                     setWybraneMiejsce({
                         numer_miejsca: 0
                     })
-                    alert("Rezerwacja nieudana")
+                    render((
+                        <CuteAlert tekstglowny = "Rezerwacja nieudana" tekstpomocniczy ={"Spróbuj ponownie"} />                
+                    ))
                     czytajRezerwacja()
                 }
             })
@@ -110,7 +109,6 @@ export default function Sala(props) {
         }
 
     }
-    
 
     const funkcjaKrzesla = () => {
 
@@ -133,7 +131,7 @@ export default function Sala(props) {
 
                 if (zajeteMiejscaIntArray.includes(z)){
                     results.push((
-                    <Button variant="danger" name = "numer_miejsca" disabled value = {z} key = {z} style={{width: '50px', height: '40px'}} onClick = {handleClick}>{z}</Button>                                            
+                        <Button variant="danger" name = "numer_miejsca" disabled value = {z} key = {z} style={{width: '50px', height: '40px'}} onClick = {handleClick}>{z}</Button>                                            
                    ))
                    z++
                 }else{
@@ -151,7 +149,7 @@ export default function Sala(props) {
 
             if (zajeteMiejscaIntArray.includes(z)){
                 results.push((
-                <Button variant="danger" name = "numer_miejsca" disabled value = {z} key = {z} style={{width: '50px', height: '40px'}} onClick = {handleClick}>{z}</Button>                                            
+                    <Button variant="danger" name = "numer_miejsca" disabled value = {z} key = {z} style={{width: '50px', height: '40px'}} onClick = {handleClick}>{z}</Button>                                            
                ))
                z++
             }else{
@@ -160,8 +158,6 @@ export default function Sala(props) {
                 ))
                 z++
             }
-
-
         }
         return results
 
@@ -181,10 +177,6 @@ export default function Sala(props) {
         {funkcjaKrzesla()}
         </div>
     )
-
-
-
-
     return (
     <>
     	<div>
@@ -193,11 +185,10 @@ export default function Sala(props) {
                 {datadisplay}
             </div>
             <div style={{width: '15rem', marginLeft: 'auto', marginRight: 'auto'}}>
-                <p> POTWIERDZ WYBOR </p>
+                <p> POTWIERDŹ WYBÓR </p>
                 <Button onClick = {handleSend} style={{width: '10rem'}}> Rezerwuj</Button>
             </div>
        	</div>
-
     </>
     )
 }
