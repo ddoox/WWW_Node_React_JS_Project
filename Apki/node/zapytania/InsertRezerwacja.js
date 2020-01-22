@@ -5,14 +5,12 @@ const client = require('./Polaczenie')
 
 
 
-router.post('/:nazwa/:id_sala/:data/:link', (req, res) => {
-    const {nazwa,id_sala,data,link} = req.params
-    const odszyfrowanyLink = link.replace(/TuBylaKropkaNieMaToJakSwietnyKod/g,".").replace(/ToSieNazywaDlugiUrl/g,":").replace(/CzasNaSlashe/g,"/")
-        .replace(/JeszczePodkresleniaDzialaAle/g,"_").replace(/JakbyCosToNiePisalemTegoFragmentu/g,",")
+router.post('/:id_wydarzenie/:numer_miejsca', (req, res) => {
+    const {id_wydarzenie,numer_miejsca} = req.params
   
     try{
-        let queryText = 'INSERT INTO wydarzenie(id_sala, data, nazwa, link_obrazek) VALUES ($1, $2, $3, $4)'
-        let queryParams = [id_sala, data, nazwa, odszyfrowanyLink]
+        let queryText = 'INSERT INTO rezerwacja(id_wydarzenie, numer_miejsca) VALUES ($1, $2)'
+        let queryParams = [id_wydarzenie,numer_miejsca]
         client.query(queryText, queryParams)
     }
     catch(err){
