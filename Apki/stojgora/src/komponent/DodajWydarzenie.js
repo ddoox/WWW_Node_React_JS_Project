@@ -26,7 +26,7 @@ export default function DodajWydarzenie(props) {
     ])
 
     const czytaj = () => {
-        fetch('http://localhost:3001/select/sale')
+        fetch('http://localhost:3001/select/sala')
             .then(res => {
                 return res.json()
             })

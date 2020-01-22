@@ -66,7 +66,36 @@ export default function Sala(props) {
         czytajRezerwacja()
     },[])
 
-    
+        
+    const handleClick = (event) => {
+        event.preventDefault()
+        setWybraneMiejsce({
+            ...wybraneMiejsce,
+            [event.target.name]: event.target.value
+        })
+
+        console.log(wybraneMiejsce)
+
+    }
+
+    const handleSend = (event) => {
+        event.preventDefault()
+
+
+        if(wybraneMiejsce.numer_miejsca != 0){
+            
+            const append = id_wydarzenie + "/" + wybraneMiejsce.numer_miejsca
+            const url = "http://localhost:3001/insert/rezerwacja/" + append
+
+            fetch(url, {
+                method: 'post'
+            });
+        }
+        setWybraneMiejsce(0)
+        czytajRezerwacja()
+    }
+
+
     const funkcjaKrzesla = () => {
 
         let results = []
@@ -121,11 +150,7 @@ export default function Sala(props) {
         return results
 
     }
-    
-    const handleClick = (event) => {
-        event.preventDefault()
 
-    }
     const saladisplay =  
     (
 	    <div style={{width: '35rem', marginLeft: 'auto', marginRight: 'auto', paddingBottom: '40px'}}>   			
@@ -150,7 +175,7 @@ export default function Sala(props) {
             <div style={{width: '35rem', marginLeft: 'auto', marginRight: 'auto'}} >
                 {saladisplay}
                 {datadisplay}
-                <Button onClick = {handleClick}> Rezerwuj</Button>
+                <Button onClick = {handleSend}> Rezerwuj</Button>
             </div>
        	</div>
 
