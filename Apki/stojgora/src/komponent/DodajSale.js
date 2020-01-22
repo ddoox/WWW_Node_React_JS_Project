@@ -42,7 +42,7 @@ export default function DodajSale(props) {
         render((
             <CuteAlert tekstglowny = "Akcja zakończona pomyślnie" tekstpomocniczy ={"Dodano salę"} />                
         ))
-        window.location.reload();
+        
     }
 
     const salaDisplay =  

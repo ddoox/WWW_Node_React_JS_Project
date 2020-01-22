@@ -53,7 +53,7 @@ export default function StronaGlowna(props) {
                             <Card.Body>
                                 <Row>
                                     <Col xs={7} sm={8} md={9}>
-                                        <Card.Title>{wydarzenie.id_wydarzenie}: {wydarzenie.nazwa}</Card.Title>
+                                        <Card.Title>{wydarzenie.nazwa}</Card.Title>
                                         <Card.Text>{wydarzenie.data}</Card.Text>
                                     </Col>
                                     <Col >                                          
