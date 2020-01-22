@@ -98,11 +98,12 @@ export default function Sala(props) {
                     })
                     czytajRezerwacja()
                 }else{
-                    
+
                     setWybraneMiejsce({
                         numer_miejsca: 0
                     })
                     alert("Rezerwacja nieudana")
+                    czytajRezerwacja()
                 }
             })
             .catch(err => console.error(err) )
