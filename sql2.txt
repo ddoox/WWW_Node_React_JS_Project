@@ -18,7 +18,5 @@ CREATE TABLE rezerwacja (
   id_wydarzenie int NOT NULL,
   numer_miejsca int NOT NULL,
   CONSTRAINT pk_rezerwacja PRIMARY KEY (id_wydarzenie,numer_miejsca),
-  FOREIGN KEY (id_wydarzenie) REFERENCES wydarzenie(id_wydarzenie)
+  FOREIGN KEY (id_wydarzenie) REFERENCES wydarzenie(id_wydarzenie) ON DELETE CASCADE ON UPDATE CASCADE
 );
-
-Tylko nie mam jak do tego podpiąć id_rezerwacji.. ale w sumie ono się będzie samo generować to się nie powtórzy xD
