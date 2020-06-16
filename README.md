@@ -1,3 +1,3 @@
 # stoj-gora
 
-Git nie chce współpracować, wrzucam jako zip na Discorda
+Projekt na studia. Runtime Node.js+Express, front-end React.js, baza PostgreSQL
